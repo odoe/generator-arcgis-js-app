@@ -1,0 +1,4 @@
+language: node_js
+node_js:
+  - '0.10'
+script: node_modules/.bin/intern-runner config=tests/intern

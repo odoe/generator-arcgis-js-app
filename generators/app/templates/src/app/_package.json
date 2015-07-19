@@ -1,0 +1,9 @@
+{
+  "name": "<%=appname%>",
+  "version": "1.0.0",
+  "main": "main",
+  "description": "<%=description%>",
+  "homepage": "",
+  "dojoBuild": "app.profile.js"
+
+}

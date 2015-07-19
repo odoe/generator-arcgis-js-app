@@ -1,0 +1,35 @@
+{
+  "name": "generator-arcgis-js-app",
+  "version": "0.0.1",
+  "description": "Yeoman generator",
+  "license": "MIT",
+  "main": "app/index.js",
+  "repository": "odoe/generator-arcgis-js-app",
+  "author": {
+    "name": "Rene Rubalcava",
+    "email": "odoe@odoe.net",
+    "url": "https://github.com/odoe"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "files": [
+    "generators"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "dependencies": {
+    "chalk": "^1.0.0",
+    "fs-extra": "^0.22.1",
+    "yeoman-generator": "^0.19.0",
+    "yosay": "^1.0.2",
+    "escodegen": "^1.6.1",
+    "esprima-fb": "^15001.1.0-dev-harmony-fb",
+    "esprima-walk": "^0.1.0",
+    "mocha": "*",
+    "underscore.string": "^3.1.1"
+  },
+  "devDependencies": {
+  }
+}

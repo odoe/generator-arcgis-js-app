@@ -1,0 +1,37 @@
+{
+  "name": "<%=appname%>",
+  "version": "0.0.1",
+  "description": "<%=description%>",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "grunt e2e",
+    "start": "grunt dev",
+    "build": "grunt build"
+  },
+  "author": "<%=email%>",
+  "license": "MIT",
+  "devDependencies": {
+    "chromedriver": "^2.16.0",
+    "dojo": "^1.10.4",
+    "grunt": "^0.4.5",
+    "grunt-babel": "^5.0.1",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-connect": "^0.10.1",
+    "grunt-contrib-copy": "^0.8.0",
+    "grunt-contrib-stylus": "^0.21.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-dojo": "^1.0.1",
+    "grunt-eslint": "^16.0.0",
+    "grunt-esri-slurp": "^2.0.1",
+    "grunt-http-server": "^1.4.0",
+    "grunt-run": "^0.3.0",
+    "grunt-selenium-webdriver": "^0.2.451",
+    "intern": "^2.2.2",
+    "matchdep": "^0.3.0"
+  },
+  "dependencies": {
+    "chai": "^3.1.0",
+    "sinon": "^1.15.4",
+    "sinon-chai": "^2.8.0"
+  }
+}
