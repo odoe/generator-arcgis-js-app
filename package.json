@@ -1,7 +1,7 @@
 {
   "name": "generator-arcgis-js-app",
   "version": "0.0.1",
-  "description": "Yeoman generator",
+  "description": "Yeoman generator for ArcGIS JS apps",
   "license": "MIT",
   "main": "app/index.js",
   "repository": "odoe/generator-arcgis-js-app",
@@ -17,7 +17,11 @@
     "generators"
   ],
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "arcgis",
+    "esrijs",
+    "esri",
+    "gis"
   ],
   "dependencies": {
     "chalk": "^1.0.0",
