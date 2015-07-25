@@ -48,6 +48,11 @@ module.exports = yeoman.generators.NamedBase.extend({
       this.destinationPath('src/app/components/' + this.name + '/css/'+this.name+'.styl'),
       {_:_, name: this.name}
     );
+    this.fs.copyTpl(
+      this.templatePath('src/components/_view/nls/_Component.js'),
+      this.destinationPath('src/app/components/' + this.name + '/nls/'+this.name+'.js'),
+      {_:_, name: this.name}
+    );
     // tests
     this.fs.copyTpl(
       this.templatePath('tests/_Component.js'),
