@@ -35,7 +35,7 @@ module.exports = yeoman.generators.NamedBase.extend({
     }.bind(this));
     this.fs.copyTpl(
       this.templatePath('src/models/_Model.js'),
-      this.destinationPath('src/app/models/model-'+this.name+'.js'),
+      this.destinationPath('src/app/models/model' + _.dasherize(this.name) + '.js'),
       {_:_, name: this.name}
     );
     // tests

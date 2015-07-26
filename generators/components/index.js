@@ -20,7 +20,7 @@ module.exports = yeoman.generators.NamedBase.extend({
       var p = this.destinationPath('tests/intern.js');
       var f = this.read(p, 'utf-8');
       var tree = esprima.parse(f);
-      var t = 'tests/unit/components' + _.dasherize(this.name) + '-view.js';
+      var t = 'tests/unit/components' + _.dasherize(this.name) + '-view';
       eswalk(tree, function(node) {
         if (node.type === 'Property' && node.key.name === 'suites') {
           node.value.elements.push({

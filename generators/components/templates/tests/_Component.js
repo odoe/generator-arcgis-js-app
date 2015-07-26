@@ -1,23 +1,26 @@
-import registerSuite from 'intern!object';
-import expect from 'intern/chai!expect';
+define(function(require) {
+  var registerSuite = require('intern!object');
+  var expect = require('intern/chai!expect');
+  var View = require('app/components/<%=name%>/View');
 
-import view from 'app/components/<%=name%>/View';
+  var view;
 
-registerSuite({
-  name: 'view: <%=name%>',
-  setup() {
-    // set up test here
-  },
-  beforeEach() {
-    // run before
-  },
-  afterEach() {
-    // run after
-  },
-  teardown() {
-    // destroy widget
-  },
-  'Component is valid': function() {
-    expect(Controller).to.not.be.undefined;
-  }
+  registerSuite({
+    name: 'components: <%=name%>',
+    setup: function() {
+      // set up test here
+    },
+    beforeEach: function() {
+      // run before
+    },
+    afterEach: function() {
+      // run after
+    },
+    teardown: function() {
+      // destroy widget
+    },
+    'Component is valid': function() {
+      expect(View).to.not.be.undefined;
+    }
+  });
 });

@@ -1,23 +1,26 @@
-import registerSuite from 'intern!object';
-import expect from 'intern/chai!expect';
+define(function(require) {
+  var registerSuite = require('intern!object');
+  var expect = require('intern/chai!expect');
+  var Model = require('app/models/model<%=_.dasherize(name)%>');
 
-import Model from 'app/models/model-<%=name%>';
+  var model;
 
-registerSuite({
-  name: 'model: model-<%=name%>',
-  setup() {
-    // set up test here
-  },
-  beforeEach() {
-    // run before
-  },
-  afterEach() {
-    // run after
-  },
-  teardown() {
-    // destroy widget
-  },
-  'Model is valid': function() {
-    expect(Model).to.not.be.undefined;
-  }
+  registerSuite({
+    name: 'models: model<%=_.dasherize(name)%>',
+    setup: function() {
+      // set up test here
+    },
+    beforeEach: function() {
+      // run before
+    },
+    afterEach: function() {
+      // run after
+    },
+    teardown: function() {
+      // destroy widget
+    },
+    'Model is valid': function() {
+      expect(Model).to.not.be.undefined;
+    }
+  });
 });

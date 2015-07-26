@@ -1,3 +1,4 @@
+/*eslint no-unused-vars:0*/
 import declare from 'dojo/_base/declare';
 import domConstruct from 'dojo/dom-construct';
 

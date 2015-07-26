@@ -94,6 +94,7 @@ module.exports = function (grunt) {
             '*.js', '**/*.js', '**/**/*.js',
             '!dmodel/*',
             '!app.profile.js',
+            '!app/**/**/nls/*.js',
             '!dojoConfig.js', '!**/*Spec.js', '!**/**/*Spec.js'
           ],
           dest: '<%= project.dist %>/app'
@@ -116,7 +117,8 @@ module.exports = function (grunt) {
         src: [
           'dojoConfig.js', 'index.html', 'app/dmodel/**/*',
           'app/app.profile.js', 'app/package.json',
-          'app/templates/*.html', 'app/components/**/*.html'
+          'app/templates/*.html', 'app/components/**/*.html',
+          'app/**/**/nls/*.js'
         ],
         dest: '<%= project.dist %>/',    // destination folder
         expand: true           // required when using cwd
