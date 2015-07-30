@@ -6,7 +6,8 @@
   "scripts": {
     "test": "grunt e2e",
     "start": "grunt dev",
-    "build": "grunt build"
+    "build": "grunt build",
+    "postinstall": "grunt build"
   },
   "author": "<%=email%>",
   "license": "MIT",
