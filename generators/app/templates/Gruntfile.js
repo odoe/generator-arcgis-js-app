@@ -152,7 +152,7 @@ module.exports = function (grunt) {
           '<%= project.src %>/dojoConfig.js', '<%= project.src %>/index.html', '<%= project.src %>/app/dmodel/**/*',
           '<%= project.src %>/app/templates/*.html', '<%= project.src %>/app/components/**/*.html'
         ],
-        tasks: ['copy:dev'],
+        tasks: ['copy'],
         options: {
           livereload: true,
         }
