@@ -33,24 +33,26 @@ module.exports = yeoman.generators.NamedBase.extend({
       var code = escodegen.generate(tree);
       fsx.outputFile(p, code);
     }.bind(this));
+    var name = this.name.toLowerCase();
+    var cname = _.camelize(this.name);
     this.fs.copyTpl(
       this.templatePath('src/components/_view/View.js'),
-      this.destinationPath('src/app/components/'+this.name+'/View.js'),
+      this.destinationPath('src/app/components/'+name+'/View.js'),
       {_:_, name: this.name}
     );
     this.fs.copyTpl(
       this.templatePath('src/components/_view/templates/_Component.html'),
-      this.destinationPath('src/app/components/' + this.name + '/templates/'+this.name+'.html'),
+      this.destinationPath('src/app/components/' + name + '/templates/'+cname+'.html'),
       {_:_, name: this.name}
     );
     this.fs.copyTpl(
       this.templatePath('src/components/_view/css/_Component.styl'),
-      this.destinationPath('src/app/components/' + this.name + '/css/'+this.name+'.styl'),
+      this.destinationPath('src/app/components/' + name + '/css/'+cname+'.styl'),
       {_:_, name: this.name}
     );
     this.fs.copyTpl(
       this.templatePath('src/components/_view/nls/_Component.js'),
-      this.destinationPath('src/app/components/' + this.name + '/nls/'+this.name+'.js'),
+      this.destinationPath('src/app/components/' + name + '/nls/'+cname+'.js'),
       {_:_, name: this.name}
     );
     // tests
