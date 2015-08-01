@@ -117,7 +117,7 @@ module.exports = function (grunt) {
         src: [
           'dojoConfig.js', 'index.html', 'app/dmodel/**/*',
           'app/app.profile.js', 'app/package.json',
-          'app/templates/*.html', 'app/components/**/*.html',
+          'app/templates/*.html', 'app/components/**/templates/*.html',
           'app/**/**/nls/*.js'
         ],
         dest: '<%= project.dist %>/',    // destination folder
@@ -142,7 +142,7 @@ module.exports = function (grunt) {
           'tests/*.js', 'tests/unit/*.js',
           'tests/support/*.js', 'tests/functional/*.js'
         ],
-        tasks: ['babel:dev'],
+        tasks: ['default'],
         options: {
           livereload: true,
         }
@@ -152,7 +152,7 @@ module.exports = function (grunt) {
           '<%= project.src %>/dojoConfig.js', '<%= project.src %>/index.html', '<%= project.src %>/app/dmodel/**/*',
           '<%= project.src %>/app/templates/*.html', '<%= project.src %>/app/components/**/*.html'
         ],
-        tasks: ['copy'],
+        tasks: ['default'],
         options: {
           livereload: true,
         }
