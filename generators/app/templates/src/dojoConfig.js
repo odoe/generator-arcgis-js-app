@@ -1,6 +1,7 @@
 var dojoConfig = {
   parseOnLoad: true,
   isDebug: true,
+  locale: 'en-us',
   deps: ['app/main'],
   map: {
     '*': {
