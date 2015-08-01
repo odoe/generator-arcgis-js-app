@@ -146,6 +146,10 @@ module.exports = yeoman.generators.Base.extend({
         this.templatePath('_travis.yml'),
         this.destinationPath('.travis.yml')
       );
+      this.fs.copy(
+        this.templatePath('_gitconfig'),
+        this.destinationPath('.gitconfig')
+      );
       this.copy('Gruntfile.js');
     }
   },
