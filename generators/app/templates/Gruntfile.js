@@ -103,6 +103,9 @@ module.exports = function (grunt) {
     },
     stylus: {
       dev: {
+        options: {
+          compress: false
+        },
         files: {
           '<%= project.dist %>/app/styles/main.css': [
             '<%= project.src %>/app/styles/*.styl',
@@ -142,7 +145,7 @@ module.exports = function (grunt) {
           'tests/*.js', 'tests/unit/*.js',
           'tests/support/*.js', 'tests/functional/*.js'
         ],
-        tasks: ['default'],
+        tasks: ['babel'],
         options: {
           livereload: true,
         }
@@ -152,7 +155,7 @@ module.exports = function (grunt) {
           '<%= project.src %>/dojoConfig.js', '<%= project.src %>/index.html', '<%= project.src %>/app/dmodel/**/*',
           '<%= project.src %>/app/templates/*.html', '<%= project.src %>/app/components/**/*.html'
         ],
-        tasks: ['default'],
+        tasks: ['copy'],
         options: {
           livereload: true,
         }
