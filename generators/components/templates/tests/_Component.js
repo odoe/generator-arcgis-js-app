@@ -1,7 +1,7 @@
 define(function(require) {
   var registerSuite = require('intern!object');
   var expect = require('intern/chai!expect');
-  var View = require('app/components/<%=name%>/View');
+  var View = require('app/components/<%=name.toLowerCase()%>/View');
 
   var view;
 
