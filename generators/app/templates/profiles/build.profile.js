@@ -97,9 +97,7 @@ var profile = {
         // otherwise they will be requested asyncronously
         'esri/map', 'esri/dijit/Search', 'esri/layers/FeatureLayer', 'esri/InfoTemplate', 'esri/SpatialReference', 'esri/geometry/Extent',
         'esri/layers/ArcGISDynamicMapServiceLayer', 'esri/layers/DataSource', 'esri/layers/DynamicLayerInfo',
-        'esri/layers/DynamicMapServiceLayer', 'esri/layers/ImageParameters', 'esri/layers/JoinDataSource', 'esri/layers/LayerDataSource',
-        'esri/layers/LayerDrawingOptions', 'esri/layers/LayerMapSource', 'esri/layers/LayerSource', 'esri/layers/QueryDataSource',
-        'esri/layers/RaserDataSource', 'esri/layers/TableDataSource'
+        'esri/layers/LayerDrawingOptions'
 
       ],
       includeLocales: ['en-us']

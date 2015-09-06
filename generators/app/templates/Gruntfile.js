@@ -27,7 +27,7 @@ module.exports = function (grunt) {
         options: {
           runType: 'runner',
           config: 'tests/intern',
-          reporters: ['pretty']
+          reporters: ['Pretty']
         }
       }
     },
@@ -65,6 +65,16 @@ module.exports = function (grunt) {
           '!<%= project.dist %>/dstore/**',
           '!<%= project.dist %>/util/**',
           '!<%= project.dist %>/dgauges/**'
+        ]
+      },
+      built: {
+        src: [
+          '<%= project.built %>'
+        ]
+      },
+      release: {
+        src: [
+          '<%= project.release %>'
         ]
       }
     },
@@ -104,7 +114,7 @@ module.exports = function (grunt) {
     stylus: {
       dev: {
         options: {
-          compress: false
+          compress: false,
         },
         files: {
           '<%= project.dist %>/app/styles/main.css': [
@@ -112,10 +122,20 @@ module.exports = function (grunt) {
             '<%= project.src %>/app/components/**/css/*.styl'
           ]
         }
+      },
+      build: {
+        options: {
+          compress: false
+        },
+        files: {
+          '<%= project.built %>/app/styles/main.css': [
+            '<%= project.dist %>/app/styles/*.css'
+          ]
+        }
       }
     },
     copy: {
-      main: {
+      dev: {
         cwd: '<%= project.src %>/',  // set working folder / root to copy
         src: [
           'dojoConfig.js', 'index.html', 'app/dmodel/**/*',
@@ -125,6 +145,72 @@ module.exports = function (grunt) {
         ],
         dest: '<%= project.dist %>/',    // destination folder
         expand: true           // required when using cwd
+      },
+      build: {
+        cwd: '<%= project.dist %>/',  // set working folder / root to copy
+        src: [
+          'index.html'
+        ],
+        dest: '<%= project.built %>/',    // destination folder
+        expand: true           // required when using cwd
+      },
+      release: {
+        cwd: '<%= project.built %>/',
+        src: [
+          'index.html',
+          'resources/**',
+          'app.css'
+        ],
+        dest: '<%= project.release %>/',
+        expand: true
+      },
+      releaseapp: {
+        src: '<%= project.built %>/dojo/dojo.js',
+        dest: '<%= project.release %>/app.js'
+      }
+    },
+    inject: {
+      single: {
+        scriptSrc: 'scripts/livereload.js',
+        files: {
+          'dist/index.html': 'src/index.html'
+        }
+      },
+      multiple: {
+        scriptSrc: ['./scripts/**.js'],
+        files: [{
+          expand: true,
+          cwd: 'src',
+          src: ['index.html'],
+          dest: 'dist'
+        }]
+      }
+    },
+    processhtml: {
+      dist: {
+        files: {
+          '<%= project.built %>/index.html': '<%= project.dist %>/index.html'
+        }
+      }
+    },
+    staticinline: {
+        main: {
+            files: {
+                '<%= project.built %>/index.html': '<%= project.release %>/index.html',
+            }
+        }
+    },
+    cssurlcopy: {
+      options: {
+        root: 'built',
+        dest: 'built/app.css'
+      },
+      main: {
+        files: [{
+        src: [
+          'built/app/styles/main.css'
+        ]
+      }]
       }
     },
     watch: {
@@ -139,7 +225,7 @@ module.exports = function (grunt) {
         }
       },
       js: {
-       files: [
+        files: [
           '<%= project.src %>/app/*.js', '<%= project.src %>/app/**/*.js',
           '<%= project.src %>/app/**/**/*.js',
           'tests/*.js', 'tests/unit/*.js',
@@ -155,7 +241,7 @@ module.exports = function (grunt) {
           '<%= project.src %>/dojoConfig.js', '<%= project.src %>/index.html', '<%= project.src %>/app/dmodel/**/*',
           '<%= project.src %>/app/templates/*.html', '<%= project.src %>/app/components/**/*.html'
         ],
-        tasks: ['copy'],
+        tasks: ['copy:dev'],
         options: {
           livereload: true,
         }
@@ -168,6 +254,7 @@ module.exports = function (grunt) {
         }
       },
       options: {
+        cssOptimize: false,
         dojo: 'dist/dojo/dojo.js', // Path to dojo.js file in dojo source
         load: 'build', // Optional: Utility to bootstrap (Default: 'build')
         // profiles: [], // Optional: Array of Profiles for build
@@ -176,13 +263,13 @@ module.exports = function (grunt) {
         // packages: [], // Optional: Array of locations of package.json (Default: nothing)
         // require: '', // Optional: Module to require for the build (Default: nothing)
         // requires: [], // Optional: Array of modules to require for the build (Default: nothing)
-        releaseDir: '../release', // Optional: release dir rel to basePath (Default: 'release')
-        cwd: './', // Directory to execute build within
+        releaseDir: '../built', // Optional: release dir rel to basePath (Default: 'release')
+        cwd: './' // Directory to execute build within
         // dojoConfig: '', // Optional: Location of dojoConfig (Default: null),
         // Optional: Base Path to pass at the command line
         // Takes precedence over other basePaths
         // Default: null
-        basePath: './dist'
+        // basePath: './dist'
       }
     },
   });
@@ -193,7 +280,8 @@ module.exports = function (grunt) {
     'stop:webdriver'
   ]);
 
-  grunt.registerTask('dev', ['http-server', 'watch']);
-  grunt.registerTask('build', ['default', 'dojo']);
-  grunt.registerTask('default', ['clean', 'eslint', 'babel:dev', 'stylus:dev', 'copy']);
+  grunt.registerTask('dev', ['inject:single', 'http-server', 'watch']);
+  grunt.registerTask('release', ['default', 'clean:release', 'clean:built', 'copy:build', 'dojo', 'processhtml', 'cssurlcopy', 'copy:release', 'copy:releaseapp']);
+  grunt.registerTask('build', ['default', 'clean:built', 'copy:build', 'dojo', 'processhtml']);
+  grunt.registerTask('default', ['clean:dist', 'eslint', 'babel:dev', 'stylus:dev', 'copy:dev', 'inject:single']);
 };

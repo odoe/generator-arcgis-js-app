@@ -1,5 +1,7 @@
 {
   "src": "src",
   "dist": "dist",
-  "esriapi": "<%=esriapi%>"
+  "built": "built",
+  "release": "release",
+  "esriapi": "3.14"
 }

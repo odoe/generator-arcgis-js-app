@@ -5,6 +5,7 @@ import _TemplatedMixin from 'dijit/_TemplatedMixin';
 
 import topic from 'dojo/topic';
 
+import arcgisUtils from 'esri/arcgis/utils';
 import mapgen from 'app/helpers/mapgenerator';
 
 export default declare([
@@ -23,7 +24,8 @@ export default declare([
       }).then(response => {
         var map = response.map;
         this.set('map', map);
-        topic.publish('map-ready', {map});
+        var layers = arcgisUtils.getLegendLayers(response);
+        topic.publish('map-ready', { map, layers });
       });
     }
   }

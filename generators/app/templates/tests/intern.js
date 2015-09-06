@@ -18,11 +18,11 @@ define({
 		'selenium-version': '2.46.0'
 	},
 
-  webdriver: {
-    host: 'localhost',
-    port: 4444
-  },
-  // Browsers to run integration testing against. Note that version numbers must be strings if used with Sauce
+	webdriver: {
+		host: 'localhost',
+		port: 4444
+	},
+	// Browsers to run integration testing against. Note that version numbers must be strings if used with Sauce
 	// OnDemand. Options that will be permutated are browserName, version, platform, and platformVersion; any other
 	// capabilities options specified for an environment will be copied as-is
 	environments: [
@@ -45,53 +45,53 @@ define({
 
 	// The desired AMD loader to use when running unit tests (client.html/client.js). Omit to use the default Dojo
 	// loader
-	useLoader: {
+	loaders: {
 		'host-node': 'dojo/dojo',
 		'host-browser': 'node_modules/dojo/dojo.js'
 	},
 
 	// Configuration options for the module loader; any AMD configuration options supported by the specified AMD loader
 	// can be used here
-	loader: {
+	loaderOptions: {
 		// Packages that should be registered with the loader in each testing environment
 		packages: [{
-      name: 'app', location: 'dist/app'
-    }, {
-      name: 'dojo', location: 'dist/dojo'
-    }, {
-      name: 'dijit', location: 'dist/dijit'
-    }, {
-      name: 'dojox', location: 'dist/dojox'
-    }, {
-      name: 'dgrid', location: 'dist/dgrid'
-    }, {
-      name: 'dstore', location: 'dist/dstore'
-    }, {
-      name: 'dmodel', location: 'dist/dmodel'
-    }, {
-      name: 'xstyle', location: 'dist/xstyle'
-    }, {
-      name: 'put-selector', location: 'dist/put-selector'
-    }, {
-      name: 'esri', location: 'dist/esri'
-    }, {
-      name: 'sinon', location: 'node_modules/sinon/lib', main: 'sinon'
-    }, {
-      name: 'sinon-chai', location: 'node_modules/sinon-chai/lib', main: 'sinon-chai'
-    }]
+			name: 'app', location: 'dist/app'
+		}, {
+			name: 'dojo', location: 'dist/dojo'
+		}, {
+			name: 'dijit', location: 'dist/dijit'
+		}, {
+			name: 'dojox', location: 'dist/dojox'
+		}, {
+			name: 'dgrid', location: 'dist/dgrid'
+		}, {
+			name: 'dstore', location: 'dist/dstore'
+		}, {
+			name: 'dmodel', location: 'dist/dmodel'
+		}, {
+			name: 'xstyle', location: 'dist/xstyle'
+		}, {
+			name: 'put-selector', location: 'dist/put-selector'
+		}, {
+			name: 'esri', location: 'dist/esri'
+		}, {
+			name: 'sinon', location: 'node_modules/sinon/lib', main: 'sinon'
+		}, {
+			name: 'sinon-chai', location: 'node_modules/sinon-chai/lib', main: 'sinon-chai'
+		}]
 	},
 
 	// Non-functional test suite(s) to run in each browser
 	suites: [
-    'tests/unit/components-map-mapview',
-    'tests/unit/components-map-webmapview',
-    'tests/unit/components-legend-view',
-    'tests/unit/helpers-mapgenerator',
-    'tests/unit/helpers-zoom'
-  ],
+		'tests/unit/components-map-mapview',
+		'tests/unit/components-map-webmapview',
+		'tests/unit/components-legend-view',
+		'tests/unit/helpers-mapgenerator',
+		'tests/unit/helpers-zoom'
+	],
 
 	// Functional test suite(s) to run in each browser once non-functional tests are completed
-	functionalSuites: [ /* 'myPackage/tests/functional' */ ],
+	functionalSuites: [ /* 'myPackage/tests/functional' */],
 
 	// A regular expression matching URLs to files that should not be included in code coverage analysis
 	excludeInstrumentation: /^(?:tests|node_modules)\//

@@ -2,14 +2,20 @@
 <html>
   <head>
     <title><%=appname%></title>
-    <link rel="stylesheet" href="esri/css/esri.css">
-    <link rel="stylesheet" type="text/css" href="app/styles/main.css" />
+    <!-- build:css app.css -->
+    <link rel="stylesheet" type="text/css" href="app/styles/main.css"/>
+    <!-- /build -->
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="initial-scale=1.0 maximum-scale=1.0">
+    <!-- build:remove -->
+    <!-- inject -->
     <script src="dojoConfig.js"></script>
+    <!-- /build -->
   </head>
   <body>
     <div id="app-container"></div>
+    <!-- build:js app.js -->
     <script src="dojo/dojo.js"></script>
+    <!-- /build -->
   </body>
 </html>

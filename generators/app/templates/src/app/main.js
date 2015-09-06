@@ -1,3 +1,4 @@
+/*eslint no-unused-vars:0*/
 import Application from 'app/templates/Application';
 import Router from 'app/router';
 import config from 'app/config';
@@ -21,9 +22,10 @@ router.on('query-params', params => {
   }
 });
 
-if (config.mapOptions) {
-  var mapOptions = config.mapOptions;
-  app = new Application({ mapOptions }, node);
+if (webmapid) {
+  app = new Application({ webmapid }, node);
+} else if (config.mapOptions){
+  app = new Application({ mapOptions: config.mapOptions }, node);
 }
 
 router.start();

@@ -13,7 +13,6 @@ export default declare([
   _WidgetBase, _TemplatedMixin
 ], {
   templateString,
-  widgetsInTemplate: true,
 
   postCreate() {
     var mapnode = document.getElementById('map-view');

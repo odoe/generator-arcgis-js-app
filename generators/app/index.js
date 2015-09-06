@@ -89,6 +89,7 @@ module.exports = yeoman.generators.Base.extend({
 
       // copy
       this.copy('profiles/build.profile.js');
+      this.copy('scripts/livereload.js');
       // == app
       this.copy('src/dojoConfig.js');
       this.copy('src/app/app.profile.js');
@@ -147,8 +148,12 @@ module.exports = yeoman.generators.Base.extend({
         this.destinationPath('.travis.yml')
       );
       this.fs.copy(
-        this.templatePath('_gitconfig'),
-        this.destinationPath('.gitconfig')
+        this.templatePath('_gitignore'),
+        this.destinationPath('.gitignore')
+      );
+      this.fs.copy(
+        this.templatePath('_jsconfig.json'),
+        this.destinationPath('jsconfig.json')
       );
       this.copy('Gruntfile.js');
     }
