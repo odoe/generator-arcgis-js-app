@@ -11,7 +11,7 @@
     "put-selector": "0.3.6",
     "xstyle": "0.1.3",
     "dstore": "~1.1.0",
-    "dgauges": "git@github.com:dmandrioli/dgauges.git"
+    "dgauges": "https://github.com/dmandrioli/dgauges.git"
   },
   "resolutions": {
     "dstore": "~1.1.0"
