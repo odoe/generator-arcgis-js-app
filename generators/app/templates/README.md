@@ -3,6 +3,17 @@
 ## <%= appname %>
 <%= description %>
 
+# Usage
+`bower install`
+
+`npm install`
+
+`grunt dev` or `npm start` - runs a local server and watches for changes
+
+`grunt release` or `npm run release` - creates a deployable build of application in a `release` folder
+
+`grunt e2e` or `npm run test` - run functional intern tests
+
 # Run app
 http://localhost:8282/dist
 
