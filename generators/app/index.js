@@ -42,10 +42,6 @@ module.exports = yeoman.generators.Base.extend({
       done();
     }.bind(this));
 
-    this.on('end', function () {
-      this.spawnCommand('grunt', ['esri_slurp']);
-    });
-
   },
   writing: {
     app: function () {

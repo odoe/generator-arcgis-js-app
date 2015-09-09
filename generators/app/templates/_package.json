@@ -8,7 +8,7 @@
     "start": "grunt dev",
     "build": "grunt build",
     "release": "grunt release",
-    "postinstall": "grunt"
+    "postinstall": "grunt initialize"
   },
   "author": "<%=email%>",
   "license": "MIT",
