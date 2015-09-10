@@ -1,5 +1,5 @@
 {
-  "name": "<%=appname%>",
+  "name": "<%=_.classify(appname)%>",
   "version": "0.1.0",
   "dependencies": {
     "dmodel": "~0.1.0",

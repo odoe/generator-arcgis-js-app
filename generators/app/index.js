@@ -3,6 +3,7 @@ var path = require('path');
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
+var _ = require('underscore.string');
 
 module.exports = yeoman.generators.Base.extend({
   prompting: function () {
@@ -46,10 +47,11 @@ module.exports = yeoman.generators.Base.extend({
   writing: {
     app: function () {
       var data = {
-        appname: this.appname,
+        appname: this.props.appname,
         description: this.props.description,
         esriapi: this.props.esriapi,
-        email: this.props.email
+        email: this.props.email,
+        _: _
       };
       // templates
       this.fs.copyTpl(

@@ -1,5 +1,5 @@
 {
-  "name": "<%=appname%>",
+  "name": "<%=_.classify(appname)%>",
   "version": "1.0.0",
   "main": "main",
   "description": "<%=description%>",

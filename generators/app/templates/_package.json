@@ -1,5 +1,5 @@
 {
-  "name": "<%=appname%>",
+  "name": "<%=_.classify(appname)%>",
   "version": "0.0.1",
   "description": "<%=description%>",
   "main": "Gruntfile.js",
