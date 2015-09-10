@@ -1,6 +1,6 @@
 {
   "name": "generator-arcgis-js-app",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Yeoman generator for ArcGIS JS apps",
   "license": "MIT",
   "main": "app/index.js",
