@@ -130,6 +130,10 @@ module.exports = yeoman.generators.Base.extend({
       this.copy('tests/unit/helpers-mapgenerator.js');
       this.copy('tests/unit/helpers-zoom.js');
       this.copy('tests/intern.js');
+
+      // == robots and crossdomain
+      this.copy('src/robots.txt');
+      this.copy('src/crossdomain.xml');
     },
 
     projectfiles: function () {

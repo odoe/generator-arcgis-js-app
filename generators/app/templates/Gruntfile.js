@@ -139,6 +139,7 @@ module.exports = function (grunt) {
         cwd: '<%= project.src %>/',  // set working folder / root to copy
         src: [
           'dojoConfig.js', 'index.html', 'app/dmodel/**/*',
+          'robots.txt', 'crossdomain.xml',
           'app/app.profile.js', 'app/package.json',
           'app/templates/*.html', 'app/components/**/templates/*.html',
           'app/**/**/nls/*.js'
@@ -149,7 +150,7 @@ module.exports = function (grunt) {
       build: {
         cwd: '<%= project.dist %>/',  // set working folder / root to copy
         src: [
-          'index.html'
+          'index.html', 'robots.txt', 'crossdomain.xml',
         ],
         dest: '<%= project.built %>/',    // destination folder
         expand: true           // required when using cwd
@@ -158,6 +159,7 @@ module.exports = function (grunt) {
         cwd: '<%= project.built %>/',
         src: [
           'index.html',
+          'robots.txt', 'crossdomain.xml',
           'resources/**',
           'app.css'
         ],
