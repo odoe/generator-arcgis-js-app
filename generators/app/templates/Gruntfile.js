@@ -169,6 +169,11 @@ module.exports = function (grunt) {
       releaseapp: {
         src: '<%= project.built %>/dojo/dojo.js',
         dest: '<%= project.release %>/app.js'
+      },
+      // need this because it's in dojo code, not css
+      releaseblank: {
+        src: '<%= project.built %>/dojo/resources/blank.gif',
+        dest: '<%= project.release %>/resources/blank.gif'
       }
     },
     inject: {
@@ -299,7 +304,7 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('dev', ['inject:single', 'http-server', 'watch']);
-  grunt.registerTask('release', ['default', 'clean:release', 'clean:built', 'copy:build', 'dojo', 'processhtml', 'cssurlcopy', 'copy:release', 'copy:releaseapp', 'imagemin:release']);
+  grunt.registerTask('release', ['default', 'clean:release', 'clean:built', 'copy:build', 'dojo', 'processhtml', 'cssurlcopy', 'copy:release', 'copy:releaseapp', 'copy:releaseblank', 'imagemin:release']);
   grunt.registerTask('build', ['default', 'clean:built', 'copy:build', 'dojo', 'processhtml']);
   grunt.registerTask('initialize', ['esri_slurp', 'default']);
   grunt.registerTask('default', ['clean:dist', 'eslint', 'babel:dev', 'stylus:dev', 'copy:dev', 'inject:single']);
