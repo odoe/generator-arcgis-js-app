@@ -151,6 +151,10 @@ module.exports = function (grunt) {
         dest: '<%= project.release %>/',
         expand: true
       },
+      releasevtiles: {
+        src: '<%= project.built %>/esri/layers/vector-tile.js',
+        dest: '<%= project.release %>/esri/layers/vector-tile.js'
+      },
       releaseapp: {
         src: '<%= project.built %>/dojo/dojo.js',
         dest: '<%= project.release %>/app.js'
@@ -186,11 +190,11 @@ module.exports = function (grunt) {
       }
     },
     staticinline: {
-        main: {
-            files: {
-                '<%= project.built %>/index.html': '<%= project.release %>/index.html',
-            }
+      main: {
+        files: {
+          '<%= project.built %>/index.html': '<%= project.release %>/index.html',
         }
+      }
     },
     cssurlcopy: {
       options: {
@@ -199,10 +203,10 @@ module.exports = function (grunt) {
       },
       main: {
         files: [{
-        src: [
-          'built/app/styles/main.css'
-        ]
-      }]
+          src: [
+            'built/app/styles/main.css'
+          ]
+        }]
       }
     },
     imagemin: {
@@ -289,7 +293,7 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('dev', ['inject:single', 'http-server', 'watch']);
-  grunt.registerTask('release', ['default', 'clean:release', 'clean:built', 'copy:build', 'dojo', 'processhtml', 'cssurlcopy', 'copy:release', 'copy:releaseapp', 'copy:releaseblank', 'imagemin:release']);
+  grunt.registerTask('release', ['default', 'clean:release', 'clean:built', 'copy:build', 'dojo', 'processhtml', 'cssurlcopy', 'copy:release', 'copy:releaseapp', 'copy:releasevtiles']); s
   grunt.registerTask('build', ['default', 'clean:built', 'copy:build', 'dojo', 'processhtml']);
   grunt.registerTask('initialize', ['default']);
   grunt.registerTask('default', ['clean:dist', 'eslint', 'babel:dev', 'stylus:dev', 'copy:dev', 'inject:single']);

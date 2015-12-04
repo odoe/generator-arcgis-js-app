@@ -83,6 +83,8 @@ var profile = {
         'dojox/gfx/path',
         'dojox/gfx/svg',
         'dojox/gfx/shape',
+        'dojox/gfx/filters',
+        'dojox/gfx/svgext',
         'dojox/xml/parser',
         'esri/dijit/Attribution',
 
