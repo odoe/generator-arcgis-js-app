@@ -48,12 +48,6 @@ var profile = {
     'esri'
   ],
 
-  map: {
-    '*': {
-      'dojox/dgauges': 'dgauges'
-    }
-  },
-
   // Build source map files to aid in debugging.
   // This defaults to true.
   // useSourceMaps: false,
