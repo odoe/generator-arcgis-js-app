@@ -293,7 +293,7 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('dev', ['inject:single', 'http-server', 'watch']);
-  grunt.registerTask('release', ['default', 'clean:release', 'clean:built', 'copy:build', 'dojo', 'processhtml', 'cssurlcopy', 'copy:release', 'copy:releaseapp', 'copy:releasevtiles']); s
+  grunt.registerTask('release', ['default', 'clean:release', 'clean:built', 'copy:build', 'dojo', 'processhtml', 'cssurlcopy', 'copy:release', 'copy:releaseapp', 'copy:releasevtiles']);
   grunt.registerTask('build', ['default', 'clean:built', 'copy:build', 'dojo', 'processhtml']);
   grunt.registerTask('initialize', ['default']);
   grunt.registerTask('default', ['clean:dist', 'eslint', 'babel:dev', 'stylus:dev', 'copy:dev', 'inject:single']);
