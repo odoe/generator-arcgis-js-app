@@ -27,7 +27,6 @@
     "grunt-css-url-copy": "^0.1.1",
     "grunt-dojo": "^1.0.1",
     "grunt-eslint": "^16.0.0",
-    "grunt-esri-slurp": "^2.0.1",
     "grunt-http-server": "^1.4.0",
     "grunt-inject": "^0.1.1",
     "grunt-pagespeed": "^1.0.0",

@@ -45,8 +45,7 @@ var profile = {
     'dgrid',
     'xstyle',
     'put-selector',
-    'esri',
-    'dgauges'
+    'esri'
   ],
 
   map: {
@@ -98,7 +97,6 @@ var profile = {
         'esri/map', 'esri/dijit/Search', 'esri/layers/FeatureLayer', 'esri/InfoTemplate', 'esri/SpatialReference', 'esri/geometry/Extent',
         'esri/layers/ArcGISDynamicMapServiceLayer', 'esri/layers/DataSource', 'esri/layers/DynamicLayerInfo',
         'esri/layers/LayerDrawingOptions'
-
       ],
       includeLocales: ['en-us']
     }//,
@@ -136,12 +134,7 @@ var profile = {
   },
   defaultConfig: {
     parseOnLoad: true,
-    isDebug: true,
-    deps: ['app/main'],
-    map: {
-      '*': {
-        'dojox/dgauges': 'dgauges'
-      }
-    }
+    async: true,
+    deps: ['app/main']
   }
 };

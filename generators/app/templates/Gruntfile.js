@@ -8,20 +8,6 @@ module.exports = function (grunt) {
   grunt.initConfig({
     project: projectConfig,
     pkg: grunt.file.readJSON('package.json'),
-    esri_slurp: {
-      options: {
-        version: '<%= project.esriapi %>'
-      },
-      dev: {
-        options: {
-          beautify: false
-        },
-        dest: '<%= project.dist %>/esri'
-      },
-      travis: {
-        dest: '<%= project.dist %>/esri'
-      }
-    },
     intern: {
       dev: {
         options: {
@@ -63,8 +49,7 @@ module.exports = function (grunt) {
           '!<%= project.dist %>/xstyle/**',
           '!<%= project.dist %>/dgrid/**',
           '!<%= project.dist %>/dstore/**',
-          '!<%= project.dist %>/util/**',
-          '!<%= project.dist %>/dgauges/**'
+          '!<%= project.dist %>/util/**'
         ]
       },
       built: {
@@ -93,8 +78,8 @@ module.exports = function (grunt) {
     babel: {
       options: {
         sourceMap: true,
-        // experimental: true,
-        modules: 'amd'
+        presets: ['es2015'],
+        plugins: ['transform-es2015-modules-amd']
       },
       dev: {
         files: [{
@@ -306,6 +291,6 @@ module.exports = function (grunt) {
   grunt.registerTask('dev', ['inject:single', 'http-server', 'watch']);
   grunt.registerTask('release', ['default', 'clean:release', 'clean:built', 'copy:build', 'dojo', 'processhtml', 'cssurlcopy', 'copy:release', 'copy:releaseapp', 'copy:releaseblank', 'imagemin:release']);
   grunt.registerTask('build', ['default', 'clean:built', 'copy:build', 'dojo', 'processhtml']);
-  grunt.registerTask('initialize', ['esri_slurp', 'default']);
+  grunt.registerTask('initialize', ['default']);
   grunt.registerTask('default', ['clean:dist', 'eslint', 'babel:dev', 'stylus:dev', 'copy:dev', 'inject:single']);
 };

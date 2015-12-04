@@ -1,11 +1,7 @@
 var dojoConfig = {
   parseOnLoad: true,
   isDebug: true,
+  async: true,
   locale: 'en-us',
-  deps: ['app/main'],
-  map: {
-    '*': {
-      'dojox/dgauges': 'dgauges'
-    }
-  }
+  deps: ['app/main']
 };

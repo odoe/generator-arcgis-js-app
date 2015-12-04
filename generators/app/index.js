@@ -25,12 +25,6 @@ module.exports = yeoman.generators.Base.extend({
       message: 'Description of application',
       default: 'My ArcGIS JS App'
     }, {
-      type: 'list',
-      name: 'esriapi',
-      message: 'API Version',
-      choices: ['3.14', '3.13', '3.12'],
-      default: '3.14'
-    }, {
       type: 'input',
       name: 'email',
       message: 'Email of author',
@@ -49,7 +43,6 @@ module.exports = yeoman.generators.Base.extend({
       var data = {
         appname: this.props.appname,
         description: this.props.description,
-        esriapi: this.props.esriapi,
         email: this.props.email,
         _: _
       };
@@ -67,11 +60,6 @@ module.exports = yeoman.generators.Base.extend({
       this.fs.copyTpl(
         this.templatePath('_bower.json'),
         this.destinationPath('bower.json'),
-        data
-      );
-      this.fs.copyTpl(
-        this.templatePath('_gruntconfig.json'),
-        this.destinationPath('gruntconfig.json'),
         data
       );
       this.fs.copyTpl(
