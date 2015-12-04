@@ -1,0 +1,6 @@
+{
+  "src": "src",
+  "dist": "dist",
+  "built": "built",
+  "release": "release"
+}

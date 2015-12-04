@@ -145,6 +145,10 @@ module.exports = yeoman.generators.Base.extend({
         this.templatePath('_jsconfig.json'),
         this.destinationPath('jsconfig.json')
       );
+      this.fs.copy(
+        this.templatePath('_gruntfig.json'),
+        this.destinationPath('gruntconfig.json')
+      );
       this.copy('Gruntfile.js');
     }
   },
