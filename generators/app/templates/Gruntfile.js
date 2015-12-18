@@ -90,7 +90,6 @@ module.exports = function (grunt) {
             '!dmodel/*',
             '!app.profile.js',
             '!app/**/**/nls/*.js',
-            '!app/workers/*',
             '!dojoConfig.js', '!**/*Spec.js', '!**/**/*Spec.js'
           ],
           dest: '<%= project.dist %>/app'
@@ -128,8 +127,6 @@ module.exports = function (grunt) {
           'robots.txt', 'crossdomain.xml',
           'app/app.profile.js', 'app/package.json',
           'app/templates/*.html', 'app/components/**/templates/*.html',
-          'app/components/**/templates/*.jpg',
-          'app/components/**/templates/*.png',
           'app/**/**/nls/*.js'
         ],
         dest: '<%= project.dist %>/',    // destination folder
@@ -216,25 +213,8 @@ module.exports = function (grunt) {
         }]
       }
     },
-    imagemin: {
-      release: {
-        files: [{
-          expand: true,
-          cwd: '<%= project.built %>/',
-          src: [
-            'resources/**/*.{png,jpg,gif}',
-            'resources/**/**/*.{png,jpg,gif}',
-            'resources/**/**/**/*.{png,jpg,gif}',
-            'resources/**/**/**/**/*.{png,jpg,gif}',
-            'resources/**/**/**/**/**/*.{png,jpg,gif}'
-          ],
-          dest: '<%= project.release %>'
-        }]
-      }
-    },
     cacheBust: {
       options: {
-        //baseDir: './release',
         encoding: 'utf8',
         algorithm: 'md5',
         length: 16,
@@ -319,7 +299,7 @@ module.exports = function (grunt) {
     'dojo', 'processhtml', 'cssurlcopy',
     'copy:release', 'copy:releaseapp', 'copy:releasevtiles',
     'copy:releaseblank', 'copy:releaseconfig',
-    'imagemin:release', 'cacheBust']);
+    'cacheBust']);
   grunt.registerTask('build', ['default', 'clean:built', 'copy:build', 'dojo', 'processhtml']);
   grunt.registerTask('initialize', ['default']);
   grunt.registerTask('default', ['clean:dist', 'eslint', 'babel:dev', 'stylus:dev', 'copy:dev', 'inject:single']);
