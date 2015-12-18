@@ -19,6 +19,7 @@
     "dojo": "^1.10.4",
     "grunt": "^0.4.5",
     "grunt-babel": "^6.0.0",
+    "grunt-cache-bust": "^0.6.0",
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-connect": "^0.10.1",
     "grunt-contrib-copy": "^0.8.0",

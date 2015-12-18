@@ -159,6 +159,10 @@ module.exports = function (grunt) {
         src: '<%= project.built %>/dojo/dojo.js',
         dest: '<%= project.release %>/app.js'
       },
+      releaseconfig: {
+        src: '<%= project.dist %>/app/config.js',
+        dest: '<%= project.release %>/config.js'
+      },
       // need this because it's in dojo code, not css
       releaseblank: {
         src: '<%= project.built %>/dojo/resources/blank.gif',
@@ -222,6 +226,19 @@ module.exports = function (grunt) {
             'resources/**/**/**/**/**/*.{png,jpg,gif}'
           ],
           dest: '<%= project.release %>'
+        }]
+      }
+    },
+    cacheBust: {
+      options: {
+        encoding: 'utf8',
+        algorithm: 'md5',
+        length: 16,
+        deleteOriginals: true
+      },
+      assets: {
+        files: [{
+          src: ['release/index.html']
         }]
       }
     },
@@ -293,7 +310,12 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('dev', ['inject:single', 'http-server', 'watch']);
-  grunt.registerTask('release', ['default', 'clean:release', 'clean:built', 'copy:build', 'dojo', 'processhtml', 'cssurlcopy', 'copy:release', 'copy:releaseapp', 'copy:releasevtiles']);
+  grunt.registerTask('release', [
+    'default', 'clean:release', 'clean:built', 'copy:build',
+    'dojo', 'processhtml', 'cssurlcopy',
+    'copy:release', 'copy:releaseapp', 'copy:releasevtiles',
+    'copy:releaseblank', 'copy:releaseconfig',
+    'imagemin:release', 'cacheBust']);
   grunt.registerTask('build', ['default', 'clean:built', 'copy:build', 'dojo', 'processhtml']);
   grunt.registerTask('initialize', ['default']);
   grunt.registerTask('default', ['clean:dist', 'eslint', 'babel:dev', 'stylus:dev', 'copy:dev', 'inject:single']);
