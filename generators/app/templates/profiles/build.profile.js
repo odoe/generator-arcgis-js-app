@@ -23,6 +23,10 @@ var profile = {
   // Excludes tests, demos, and original template files from being included in the built version.
   mini: true,
 
+  // plugins: {
+  //   "xstyle/css": "xstyle/build/amd-css"
+  // },
+
   // Uses Closure Compiler as the JavaScript minifier. This can also be set to "shrinksafe" to use ShrinkSafe,
   // though ShrinkSafe is deprecated and not recommended.
   // This option defaults to "" (no compression) if not provided.
@@ -45,7 +49,11 @@ var profile = {
     'dgrid',
     'xstyle',
     'put-selector',
-    'esri'
+    'esri',
+    'dojo-theme-flat',
+    'font-awesome',
+    'bootstrap',
+    'bootstrap-material-design'
   ],
 
   // Build source map files to aid in debugging.
@@ -90,9 +98,30 @@ var profile = {
 
         // be sure to include the layer types used in your web map
         // otherwise they will be requested asyncronously
-        'esri/map', 'esri/dijit/Search', 'esri/layers/FeatureLayer', 'esri/InfoTemplate', 'esri/SpatialReference', 'esri/geometry/Extent',
-        'esri/layers/ArcGISDynamicMapServiceLayer', 'esri/layers/DataSource', 'esri/layers/DynamicLayerInfo',
-        'esri/layers/LayerDrawingOptions'
+        'esri/map',
+        // 'esri/dijit/Search',
+        'esri/layers/FeatureLayer',
+        'esri/InfoTemplate',
+        'esri/SpatialReference',
+        'esri/geometry/Extent',
+        'esri/layers/ArcGISDynamicMapServiceLayer',
+        'esri/layers/DataSource',
+        'esri/layers/DynamicLayerInfo',
+        'esri/layers/LayerDrawingOptions',
+        'esri/layers/ArcGISImageServiceLayer',
+        'esri/layers/ArcGISImageServiceVectorLayer',
+        'esri/layers/ImageServiceParameters',
+        'esri/layers/CSVLayer',
+        'esri/layers/GeoRSSLayer',
+        'esri/layers/KMLLayer',
+        'esri/layers/StreamLayer',
+        'esri/layers/WebTiledLayer',
+        'esri/layers/WMSLayer',
+        'esri/layers/VectorTileLayer',
+        'esri/virtualearth/VETiledLayer'
+      ],
+      exclude: [
+        'app/config'
       ],
       includeLocales: ['en-us']
     }//,
@@ -128,9 +157,14 @@ var profile = {
     // We are not loading tests in production, so we can get rid of some test sniffing code.
     'dojo-test-sniff': false
   },
+
   defaultConfig: {
     parseOnLoad: true,
     async: true,
-    deps: ['app/main']
+    deps: ['app/main'],
+    paths: {
+      'app/config': './config',
+      'esri/layers/vector-tile': './vector-tile'
+    }
   }
 };
