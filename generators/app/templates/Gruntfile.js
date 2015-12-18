@@ -90,6 +90,7 @@ module.exports = function (grunt) {
             '!dmodel/*',
             '!app.profile.js',
             '!app/**/**/nls/*.js',
+            '!app/workers/*',
             '!dojoConfig.js', '!**/*Spec.js', '!**/**/*Spec.js'
           ],
           dest: '<%= project.dist %>/app'
@@ -127,6 +128,8 @@ module.exports = function (grunt) {
           'robots.txt', 'crossdomain.xml',
           'app/app.profile.js', 'app/package.json',
           'app/templates/*.html', 'app/components/**/templates/*.html',
+          'app/components/**/templates/*.jpg',
+          'app/components/**/templates/*.png',
           'app/**/**/nls/*.js'
         ],
         dest: '<%= project.dist %>/',    // destination folder
@@ -146,14 +149,14 @@ module.exports = function (grunt) {
           'index.html',
           'robots.txt', 'crossdomain.xml',
           'resources/**',
-          'app.css'
+          'app.css',
         ],
         dest: '<%= project.release %>/',
         expand: true
       },
       releasevtiles: {
         src: '<%= project.built %>/esri/layers/vector-tile.js',
-        dest: '<%= project.release %>/esri/layers/vector-tile.js'
+        dest: '<%= project.release %>/vector-tile.js'
       },
       releaseapp: {
         src: '<%= project.built %>/dojo/dojo.js',
@@ -231,6 +234,7 @@ module.exports = function (grunt) {
     },
     cacheBust: {
       options: {
+        //baseDir: './release',
         encoding: 'utf8',
         algorithm: 'md5',
         length: 16,
@@ -265,7 +269,7 @@ module.exports = function (grunt) {
           livereload: true,
         }
       },
-      others: {
+      dev: {
         files: [
           '<%= project.src %>/dojoConfig.js', '<%= project.src %>/index.html', '<%= project.src %>/app/dmodel/**/*',
           '<%= project.src %>/app/templates/*.html', '<%= project.src %>/app/components/**/*.html'

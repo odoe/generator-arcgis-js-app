@@ -1,4 +1,4 @@
-var dojoConfig = {
+window.dojoConfig = {
   parseOnLoad: true,
   isDebug: true,
   async: true,
