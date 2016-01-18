@@ -1,8 +1,7 @@
 define(function(require) {
   var registerSuite = require('intern!object');
   var expect = require('intern/chai!expect');
-  var View = require('app/components/map/WebMapView');
-  var topic = require('dojo/topic');
+  var View = require('app/components/map/WebMapView').default;
   var config = require('app/config');
   var utils = require('esri/arcgis/utils');
   var chai = require('intern/chai!');
@@ -35,9 +34,11 @@ define(function(require) {
       utils.createMap.restore();
     },
     'Component is valid': function() {
+      this.skip('Only use test when creating a WebMap');
       expect(View).to.not.be.undefined;
     },
     'View publishes a valid map given a webmapid': function() {
+      this.skip('Only use test when creating a WebMap');
       mapView = new View({
         webmapid: config.webmap.webmapid
       });

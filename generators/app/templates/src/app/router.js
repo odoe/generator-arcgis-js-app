@@ -4,10 +4,10 @@ import topic from 'dojo/topic';
 import router from 'dojo/router';
 import urlUtils from 'esri/urlUtils';
 
-var Router = declare([Evented], {
+const Router = declare([Evented], {
 
   start() {
-    var urlObj = urlUtils.urlToObject(location.href);
+    let urlObj = urlUtils.urlToObject(location.href);
 
     this.emit('query-params', urlObj.query);
 

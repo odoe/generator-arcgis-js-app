@@ -6,7 +6,7 @@
 
 import arcgisUtils from 'esri/arcgis/utils';
 
-var util = {
+const util = {
 
   fromWebMapAsJSON(options) {
     if (options.webmapid) {

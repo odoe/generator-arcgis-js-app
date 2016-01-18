@@ -3,11 +3,11 @@ import Application from 'app/templates/Application';
 import Router from 'app/router';
 import config from 'app/config';
 
-var node = document.getElementById('app-container');
-var router = new Router();
+let node = document.getElementById('app-container');
+let router = new Router();
 
-var app;
-var webmapid;
+let app;
+let webmapid;
 
 if (config.webmap && config.webmap.webmapid) {
   webmapid = config.webmap.webmapid;

@@ -4,7 +4,7 @@ define(function(require) {
   var chai = require('intern/chai!');
   var sinon = require('sinon');
   var sinonChai = require('sinon-chai');
-  var View = require('app/components/legend/View');
+  var View = require('app/components/legend/View').default;
   var topic = require('dojo/topic');
 
   chai.use(sinonChai);

@@ -4,7 +4,6 @@ define(function(require) {
   var chai = require('intern/chai!');
   var sinon = require('sinon');
   var sinonChai = require('sinon-chai');
-  // var helper = require('app/helpers/zoom');
 
   chai.use(sinonChai);
 

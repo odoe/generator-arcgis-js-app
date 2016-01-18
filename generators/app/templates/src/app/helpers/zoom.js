@@ -1,16 +1,14 @@
-import * as curry from 'dojox/lang/functional/curry';
-
-var zoom = curry((map, geometry) => {
+const zoom = (map, geometry) => {
   if (geometry.type === 'point') {
-    var mz = map.getMaxZoom();
+    let mz = map.getMaxZoom();
     if (mz) {
-      map.centerAndZoom(geometry, mz - 2);
+      return map.centerAndZoom(geometry, mz - 2);
     } else {
-      map.centerAt(geometry);
+      return map.centerAt(geometry);
     }
   } else {
-    map.setExtent(geometry.getExtent(), true);
+    return map.setExtent(geometry.getExtent(), true);
   }
-});
+};
 
 export default zoom;

@@ -4,7 +4,7 @@ define(function(require) {
   var chai = require('intern/chai!');
   var sinon = require('sinon');
   var sinonChai = require('sinon-chai');
-  var helper = require('app/helpers/mapgenerator');
+  var helper = require('app/helpers/mapgenerator').default;
   var arcgisUtils = require('esri/arcgis/utils');
 
   chai.use(sinonChai);

@@ -1,4 +1,3 @@
-import declare from 'dojo/_base/declare';
 import topic from 'dojo/topic';
 
 import _WidgetBase from 'dijit/_WidgetBase';
@@ -8,9 +7,7 @@ import Legend from 'esri/dijit/Legend';
 
 import templateString from 'dojo/text!./templates/Legend.html';
 
-export default declare([
-  _WidgetBase, _TemplatedMixin
-], {
+export default _WidgetBase.createSubclass([_TemplatedMixin], {
 
   baseClass: 'lgnd-node',
 
@@ -22,15 +19,15 @@ export default declare([
   },
 
   onMapReady(data) {
-    var node = this.lgndContainer;
-    var map = data.map;
-    var legend = new Legend({map}, node);
+    let node = this.lgndContainer;
+    let map = data.map;
+    let legend = new Legend({map}, node);
     legend.startup();
     this.set('legend', legend);
   },
 
   onMapChange(data) {
-    var legend = this.get('legend');
+    let legend = this.get('legend');
     legend.set('map', data.map);
     legend.refresh();
   }

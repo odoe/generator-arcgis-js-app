@@ -1,8 +1,7 @@
 define(function(require) {
   var registerSuite = require('intern!object');
   var expect = require('intern/chai!expect');
-  var View = require('app/components/map/MapView');
-  var topic = require('dojo/topic');
+  var View = require('app/components/map/MapView').default;
 
   var mapView;
 
