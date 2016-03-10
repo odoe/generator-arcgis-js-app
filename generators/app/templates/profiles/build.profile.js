@@ -45,15 +45,18 @@ var profile = {
     'dojo',
     'dojox',
     'dstore',
-    'dmodel',
     'dgrid',
     'xstyle',
     'put-selector',
-    'esri',
-    'dojo-theme-flat',
-    'font-awesome',
-    'bootstrap',
-    'bootstrap-material-design'
+    'esri', {
+      name: 'moment',
+      location: 'moment',
+      main: 'moment',
+      trees: [
+          // don't bother with .hidden, tests, min, src, and templates
+          [".", ".", /(\/\.)|(~$)|(test|txt|src|min|templates)/]
+      ]
+    }
   ],
 
   // Build source map files to aid in debugging.
