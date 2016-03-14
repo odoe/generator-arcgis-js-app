@@ -49,7 +49,8 @@ module.exports = function (grunt) {
           '!<%= project.dist %>/xstyle/**',
           '!<%= project.dist %>/dgrid/**',
           '!<%= project.dist %>/dstore/**',
-          '!<%= project.dist %>/util/**'
+          '!<%= project.dist %>/util/**',
+          '!<%= project.dist %>/moment/**'
         ]
       },
       built: {
