@@ -69,6 +69,8 @@ define({
 		}, {
 			name: 'dmodel', location: 'dist/dmodel'
 		}, {
+			name: 'moment', location: 'dist/moment'
+		}, {
 			name: 'xstyle', location: 'dist/xstyle'
 		}, {
 			name: 'put-selector', location: 'dist/put-selector'
