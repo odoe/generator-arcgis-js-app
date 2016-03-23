@@ -87,6 +87,8 @@ Will create component and tests. Updates `intern.js` with test suite.
 ### Notes 
 Uses [theintern.io](https://theintern.github.io/) for testing. If you want to run functional tests, Java is required to use [selenium local driver](http://www.seleniumhq.org/download/).
 
+It is recommended that you use NPM 3.x to install dependencies, as this [will reduce the time it takes for Babel to transpile ES2015 code](https://phabricator.babeljs.io/T6756#67810).
+
 ### Getting To Know Yeoman
 
 Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.
