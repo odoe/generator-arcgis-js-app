@@ -7,7 +7,7 @@ var os = require('os');
 
 describe('arcgis-js-app:app', function () {
   var name = 'My ArcGIS JS App';
-  var normalizedNameRegEx = /"name": "MyArcGISJSApp"/;
+  var normalizedNameRegEx = /"name": "my-arcgis-js-app"/;
   var description = 'My ArcGIS JS App';
   var email = 'twayson@esri.com';
   before(function (done) {
@@ -34,7 +34,7 @@ describe('arcgis-js-app:app', function () {
     assert.fileContent('package.json', normalizedNameRegEx);
   });
   it('sets description in package.json', function() {
-    assert.fileContent('package.json', description);
+    assert.fileContent('package.json', new RegExp('"description": "' + description + '"'));
   });
   it('sets author in package.json', function() {
     assert.fileContent('package.json', new RegExp('"author": "' + email + '"'));

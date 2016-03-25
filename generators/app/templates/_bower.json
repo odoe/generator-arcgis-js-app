@@ -1,5 +1,5 @@
 {
-  "name": "<%=_.classify(appname)%>",
+  "name": "<%=normalizedAppname%>",
   "version": "0.1.0",
   "dependencies": {
     "esri": "arcgis-js-api#3.16.0"
