@@ -46,8 +46,6 @@ define({
 	// The desired AMD loader to use when running unit tests (client.html/client.js). Omit to use the default Dojo
 	// loader
 	loaders: {
-		'host-node': 'dojo/dojo',
-		'host-browser': 'node_modules/dojo/dojo.js'
 	},
 
 	// Configuration options for the module loader; any AMD configuration options supported by the specified AMD loader
