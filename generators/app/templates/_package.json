@@ -34,8 +34,6 @@
     "grunt-inject": "^0.1.1",
     "grunt-pagespeed": "^1.0.0",
     "grunt-processhtml": "^0.3.8",
-    "grunt-run": "^0.3.0",
-    "grunt-selenium-webdriver": "^0.2.451",
     "grunt-static-inline": "^0.1.6",
     "intern": "^3.0.1",
     "matchdep": "^0.3.0"
