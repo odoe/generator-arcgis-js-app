@@ -1,3 +1,5 @@
+var chromedriver = require('chromedriver');
+
 module.exports = function (grunt) {
   'use strict';
   // load all grunt tasks
@@ -21,19 +23,6 @@ module.exports = function (grunt) {
       dev: {
         root: '.',
         runInBackground: true
-      }
-    },
-    run: {
-      options: {
-        wait: false
-      },
-      webdriver: {
-        cmd: 'java',
-        args: [
-          '-jar',
-          'tests/lib/selenium-server-standalone-2.46.0.jar',
-          '-Dwebdriver.chrome.driver=node_modules/chromedriver/bin/chromedriver'
-        ]
       }
     },
     clean: {
@@ -288,10 +277,25 @@ module.exports = function (grunt) {
     },
   });
 
+  grunt.registerTask('chromedriver', 'start/stop chromedriver', function() {
+    var args = [
+      '--port=4444',
+      '--url-base=wd/hub'
+    ];
+    if (arguments.length === 0) {
+      grunt.verbose.writeln('starting chromedriver');
+      chromedriver.start(args);
+    } else {
+      // called w/ :stop
+      grunt.verbose.writeln('stopping chromedriver');
+      chromedriver.stop();
+    }
+  });
+
   grunt.registerTask('e2e', [
-    'run:webdriver',
+    'chromedriver',
     'intern',
-    'stop:webdriver'
+    'chromedriver:stop'
   ]);
 
   grunt.registerTask('dev', ['inject:single', 'http-server', 'watch']);
