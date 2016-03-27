@@ -111,7 +111,6 @@ module.exports = yeoman.generators.Base.extend({
       this.copy('src/app/templates/Application.js');
 
       // == tests
-      this.copy('tests/lib/selenium-server-standalone-2.46.0.jar');
       this.copy('tests/unit/components-legend-view.js');
       this.copy('tests/unit/components-map-mapview.js');
       this.copy('tests/unit/components-map-webmapview.js');

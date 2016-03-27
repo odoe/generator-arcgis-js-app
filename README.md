@@ -76,7 +76,7 @@ Will create component and tests. Updates `intern.js` with test suite.
 
 `grunt build` - build the application and output to a `release` folder.
 
-`grunt e2e` - runs all tests using local [selenium](http://www.seleniumhq.org/) and [chromedriver](https://sites.google.com/a/chromium.org/chromedriver/).
+`grunt e2e` - runs all tests using local [chromedriver](https://sites.google.com/a/chromium.org/chromedriver/).
 
 
 ### Still a beta
@@ -85,7 +85,7 @@ Will create component and tests. Updates `intern.js` with test suite.
 * Guide on application architecture
 
 ### Notes 
-Uses [theintern.io](https://theintern.github.io/) for testing. If you want to run functional tests, Java is required to use [selenium local driver](http://www.seleniumhq.org/download/).
+Uses [theintern.io](https://theintern.github.io/) for testing.
 
 It is recommended that you use NPM 3.x to install dependencies, as this [will reduce the time it takes for Babel to transpile ES2015 code](https://phabricator.babeljs.io/T6756#67810).
 
