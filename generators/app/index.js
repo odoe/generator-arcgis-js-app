@@ -89,7 +89,6 @@ module.exports = yeoman.generators.Base.extend({
       this.copy('src/app/styles/.gitkeep');
       this.copy('src/app/templates/.gitkeep');
       this.copy('tests/functional/.gitkeep');
-      this.copy('tests/lib/.gitkeep');
       this.copy('tests/support/.gitkeep');
       this.copy('tests/unit/.gitkeep');
       // == app files
