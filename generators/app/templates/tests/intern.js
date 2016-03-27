@@ -96,5 +96,5 @@ define({
 	functionalSuites: [ /* 'myPackage/tests/functional' */],
 
 	// A regular expression matching URLs to files that should not be included in code coverage analysis
-	excludeInstrumentation: /^(?:tests|node_modules)\//
+	excludeInstrumentation: /^(?:tests|node_modules|dist\/dijit|dist\/dojo|dist\/dojox|dist\/esri|dist\/moment)\//
 });
