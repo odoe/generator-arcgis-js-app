@@ -84,7 +84,6 @@ describe('arcgis-js-app:app', function () {
   });
   it('creates test files', function () {
     assert.file([
-      'tests/lib/selenium-server-standalone-2.46.0.jar',
       'tests/unit/components-legend-view.js',
       'tests/unit/components-map-mapview.js',
       'tests/unit/components-map-webmapview.js',
