@@ -42,9 +42,10 @@ module.exports = yeoman.generators.Base.extend({
     app: function () {
       var data = {
         appname: this.props.appname,
+        // NPM names can no longer contain capital letters
+        normalizedAppname: _.dasherize(this.props.appname.toLowerCase()),
         description: this.props.description,
-        email: this.props.email,
-        _: _
+        email: this.props.email
       };
       // templates
       this.fs.copyTpl(
