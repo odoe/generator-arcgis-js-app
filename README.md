@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/odoe/generator-arcgis-js-app.svg?branch=master)](https://travis-ci.org/odoe/generator-arcgis-js-app)
+[![Dependencies Status](https://david-dm.org/odoe/generator-arcgis-js-app.svg)](https://david-dm.org/odoe/generator-arcgis-js-app)
 # generator-arcgis-js-app
 
 > [Yeoman](http://yeoman.io) generator
@@ -84,7 +86,7 @@ Will create component and tests. Updates `intern.js` with test suite.
 * Needs ability to inject code into [Application.js](generators/app/templates/src/app/templates/Appication.js)
 * Guide on application architecture
 
-### Notes 
+### Notes
 Uses [theintern.io](https://theintern.github.io/) for testing.
 
 It is recommended that you use NPM 3.x to install dependencies, as this [will reduce the time it takes for Babel to transpile ES2015 code](https://phabricator.babeljs.io/T6756#67810).
