@@ -3,8 +3,8 @@ import Application from 'app/templates/Application';
 import Router from 'app/router';
 import config from 'app/config';
 
-let node = document.getElementById('app-container');
-let router = new Router();
+const node = document.getElementById('app-container');
+const router = new Router();
 
 let app;
 let webmapid;

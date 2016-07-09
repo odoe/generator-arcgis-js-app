@@ -1,8 +1,8 @@
 'use strict';
 
 var path = require('path');
-var assert = require('yeoman-generator').assert;
-var helpers = require('yeoman-generator').test;
+var assert = require('yeoman-assert');
+var helpers = require('yeoman-test');
 var os = require('os');
 
 describe('arcgis-js-app:app', function () {
@@ -10,15 +10,29 @@ describe('arcgis-js-app:app', function () {
   var normalizedNameRegEx = /"name": "my-arcgis-js-app"/;
   var description = 'My ArcGIS JS App';
   var email = 'twayson@esri.com';
+  var version = '3.x';
+  var css = 'stylus';
   before(function (done) {
     helpers.run(path.join(__dirname, '../generators/app'))
       .withOptions({ skipInstall: true })
       .withPrompts({
         appname: name,
         description: description,
-        email: email
+        email: email,
+        esrijsversion: version,
+        csspre: css
       })
-      .on('end', done);
+      .on('error', function (error) {
+        console.log('Oh Noes!', error);
+      })
+      .on('ready', function (generator) {
+        // This is called right before `generator.run()` is called
+        console.log('Ok ready!');
+      })
+      .on('end', function() {
+        console.log('End');
+        done();
+      });
   });
 
   // README
@@ -58,14 +72,13 @@ describe('arcgis-js-app:app', function () {
   // remaining (copied) files
   it('creates app files', function () {
     assert.file([
-      'scripts/livereload.js',
       'profiles/build.profile.js',
       'src/dojoConfig.js',
       'src/app/app.profile.js',
       'src/app/config.js',
       'src/app/main.js',
       'src/app/components/legend/templates/Legend.html',
-      'src/app/components/legend/View.js',
+      'src/app/components/legend/Legend.js',
       'src/app/components/map/MapView.js',
       'src/app/components/map/WebMapView.js',
       'src/app/helpers/mapgenerator.js',
@@ -103,7 +116,6 @@ describe('arcgis-js-app:app', function () {
       '.travis.yml',
       '.gitignore',
       'jsconfig.json',
-      'gruntconfig.json',
       'Gruntfile.js'
     ]);
   });

@@ -11,16 +11,16 @@ export default _WidgetBase.createSubclass([_TemplatedMixin], {
   templateString: '<div class="map-node"></div>',
 
   postCreate() {
-    let webmapid = this.get('webmapid');
-    let node = this.domNode;
+    const webmapid = this.get('webmapid');
+    const node = this.domNode;
     if (webmapid) {
       mapgen.fromWebMapAsJSON({
         webmapid,
         node
       }).then(response => {
-        let map = response.map;
+        const map = response.map;
         this.set('map', map);
-        let layers = arcgisUtils.getLegendLayers(response);
+        const layers = arcgisUtils.getLegendLayers(response);
         topic.publish('map-ready', { map, layers });
       });
     }

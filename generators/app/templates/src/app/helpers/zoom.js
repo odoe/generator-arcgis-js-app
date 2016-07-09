@@ -1,6 +1,6 @@
 const zoom = (map, geometry) => {
   if (geometry.type === 'point') {
-    let mz = map.getMaxZoom();
+    const mz = map.getMaxZoom();
     if (mz) {
       return map.centerAndZoom(geometry, mz - 2);
     } else {

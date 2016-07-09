@@ -1,14 +1,12 @@
 'use strict';
 var path = require('path');
-var yeoman = require('yeoman-generator');
+var yeomanBase = require('yeoman-generator').Base;
 var chalk = require('chalk');
 var yosay = require('yosay');
 var _ = require('underscore.string');
 
-module.exports = yeoman.generators.Base.extend({
-  prompting: function () {
-    var done = this.async();
-
+module.exports = yeomanBase.extend({
+  prompting: function (done) {
     // Have Yeoman greet the user.
     this.log(yosay(
       'Welcome to the ' + chalk.red('ArcgisJsApp') + ' generator!'
@@ -25,23 +23,49 @@ module.exports = yeoman.generators.Base.extend({
       message: 'Description of application',
       default: 'My ArcGIS JS App'
     }, {
+      type: 'list',
+      name: 'esrijsversion',
+      message: 'Which version of ArcGIS JS API?',
+      choices: ['3.x', '4.x']
+    }, {
+      type: 'list',
+      name: 'csspre',
+      message: 'Which CSS preprocessor?',
+      choices: ['stylus', 'sass']
+    }, {
       type: 'input',
       name: 'email',
       message: 'Email of author',
       default: ''
     }];
-
+    /*
     this.prompt(prompts, function (props) {
       this.props = props;
       // To access props later use this.props.someOption;
       done();
     }.bind(this));
-
+    */
+    return this.prompt(prompts)
+      .then(function(answers) {
+        this.props = answers;
+        this.stylus = answers.csspre === 'stylus';
+        this.sass = answers.csspre === 'sass';
+        this.v3 = answers.esrijsversion === '3.x';
+        this.v4 = answers.esrijsversion === '4.x';
+        this.normalizedAppname = _.dasherize(answers.appname.toLowerCase()),
+        this.log('app name', answers.appname);
+        this.log('description', answers.description);
+        this.log('arcgis js api version', answers.esrijsversion);
+        this.log('css preprocessor', answers.csspre);
+        this.log('email', answers.email);
+      }.bind(this));
   },
   writing: {
     app: function () {
       var data = {
         appname: this.props.appname,
+        v3: this.v3,
+        v4: this.v4,
         // NPM names can no longer contain capital letters
         normalizedAppname: _.dasherize(this.props.appname.toLowerCase()),
         description: this.props.description,
@@ -58,11 +82,8 @@ module.exports = yeoman.generators.Base.extend({
         this.destinationPath('package.json'),
         data
       );
-      this.fs.copyTpl(
-        this.templatePath('_bower.json'),
-        this.destinationPath('bower.json'),
-        data
-      );
+      this.template('_bower.json', 'bower.json');
+
       this.fs.copyTpl(
         this.templatePath('src/app/_package.json'),
         this.destinationPath('src/app/package.json'),
@@ -76,7 +97,6 @@ module.exports = yeoman.generators.Base.extend({
 
       // copy
       this.copy('profiles/build.profile.js');
-      this.copy('scripts/livereload.js');
       // == app
       this.copy('src/dojoConfig.js');
       this.copy('src/app/app.profile.js');
@@ -95,7 +115,7 @@ module.exports = yeoman.generators.Base.extend({
       // == app files
       this.copy('src/app/components/legend/css/Legend.styl');
       this.copy('src/app/components/legend/templates/Legend.html');
-      this.copy('src/app/components/legend/View.js');
+      this.copy('src/app/components/legend/Legend.js');
 
       this.copy('src/app/components/map/css/Map.styl');
       this.copy('src/app/components/map/MapView.js');
@@ -144,15 +164,12 @@ module.exports = yeoman.generators.Base.extend({
         this.templatePath('_jsconfig.json'),
         this.destinationPath('jsconfig.json')
       );
-      this.fs.copy(
-        this.templatePath('_gruntconfig.json'),
-        this.destinationPath('gruntconfig.json')
-      );
-      this.copy('Gruntfile.js');
+      this.template('Gruntfile.js', 'Gruntfile.js');
     }
   },
 
   install: function () {
-    this.installDependencies();
+    this.bowerInstall();
+    this.npmInstall();
   }
 });

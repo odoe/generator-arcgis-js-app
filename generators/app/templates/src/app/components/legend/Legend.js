@@ -19,15 +19,15 @@ export default _WidgetBase.createSubclass([_TemplatedMixin], {
   },
 
   onMapReady(data) {
-    let node = this.lgndContainer;
-    let map = data.map;
-    let legend = new Legend({map}, node);
+    const node = this.lgndContainer;
+    const map = data.map;
+    const legend = new Legend({map}, node);
     legend.startup();
     this.set('legend', legend);
   },
 
   onMapChange(data) {
-    let legend = this.get('legend');
+    const legend = this.get('legend');
     legend.set('map', data.map);
     legend.refresh();
   }

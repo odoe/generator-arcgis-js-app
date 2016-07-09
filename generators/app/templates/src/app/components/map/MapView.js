@@ -10,9 +10,9 @@ export default _WidgetBase.createSubclass([_TemplatedMixin], {
   templateString: '<div class="map-node"></div>',
 
   postCreate() {
-    let node = this.domNode;
-    let mapOptions = this.get('mapOptions');
-    let map = new Map(node, mapOptions);
+    const node = this.domNode;
+    const mapOptions = this.get('mapOptions');
+    const map = new Map(node, mapOptions);
     map.on('load', () => topic.publish('map-ready', { map }));
     this.set('map', map);
   }

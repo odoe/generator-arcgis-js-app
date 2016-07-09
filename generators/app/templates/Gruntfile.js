@@ -6,9 +6,7 @@ module.exports = function (grunt) {
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
   grunt.loadNpmTasks('intern');
   // config
-  var projectConfig = grunt.file.readJSON('gruntconfig.json');
   grunt.initConfig({
-    project: projectConfig,
     pkg: grunt.file.readJSON('package.json'),
     intern: {
       dev: {
@@ -28,28 +26,28 @@ module.exports = function (grunt) {
     clean: {
       dist: {
         src: [
-          '<%= project.dist %>/*',
-          '!<%= project.dist %>/dmodel/**',
-          '!<%= project.dist %>/esri/**',
-          '!<%= project.dist %>/dojo/**',
-          '!<%= project.dist %>/dijit/**',
-          '!<%= project.dist %>/dojox/**',
-          '!<%= project.dist %>/put-selector/**',
-          '!<%= project.dist %>/xstyle/**',
-          '!<%= project.dist %>/dgrid/**',
-          '!<%= project.dist %>/dstore/**',
-          '!<%= project.dist %>/util/**',
-          '!<%= project.dist %>/moment/**'
+          'dist/*',
+          '!dist/dmodel/**',
+          '!dist/esri/**',
+          '!dist/dojo/**',
+          '!dist/dijit/**',
+          '!dist/dojox/**',
+          '!dist/put-selector/**',
+          '!dist/xstyle/**',
+          '!dist/dgrid/**',
+          '!dist/dstore/**',
+          '!dist/util/**',
+          '!dist/moment/**'
         ]
       },
       built: {
         src: [
-          '<%= project.built %>'
+          'built'
         ]
       },
       release: {
         src: [
-          '<%= project.release %>'
+          'release'
         ]
       }
     },
@@ -58,11 +56,11 @@ module.exports = function (grunt) {
         configFile: '.eslintrc'
       },
       target: [
-        '<%= project.src %>/app/main.js',
-        '<%= project.src %>/app/router.js',
-        '<%= project.src %>/app/components/**/*.js',
-        '<%= project.src %>/app/helpers/**/*.js',
-        '<%= project.src %>/app/templates/**/*.js'
+        'src/app/main.js',
+        'src/app/router.js',
+        'src/app/components/**/*.js',
+        'src/app/helpers/**/*.js',
+        'src/app/templates/**/*.js'
       ]
     },
     babel: {
@@ -74,7 +72,7 @@ module.exports = function (grunt) {
       dev: {
         files: [{
           expand: true,
-          cwd: '<%= project.src %>/app',
+          cwd: 'src/app',
           src: [
             '*.js', '**/*.js', '**/**/*.js',
             '!dmodel/*',
@@ -82,19 +80,19 @@ module.exports = function (grunt) {
             '!app/**/**/nls/*.js',
             '!dojoConfig.js', '!**/*Spec.js', '!**/**/*Spec.js'
           ],
-          dest: '<%= project.dist %>/app'
+          dest: 'dist/app'
         }]
       }
-    },
+    },<% if (stylus) { %>
     stylus: {
       dev: {
         options: {
           compress: false,
         },
         files: {
-          '<%= project.dist %>/app/styles/main.css': [
-            '<%= project.src %>/app/styles/*.styl',
-            '<%= project.src %>/app/components/**/css/*.styl'
+          'dist/app/styles/main.css': [
+            'src/app/styles/*.styl',
+            'src/app/components/**/css/*.styl'
           ]
         }
       },
@@ -103,15 +101,39 @@ module.exports = function (grunt) {
           compress: false
         },
         files: {
-          '<%= project.built %>/app/styles/main.css': [
-            '<%= project.dist %>/app/styles/*.css'
+          'built/app/styles/main.css': [
+            'dist/app/styles/*.css'
           ]
         }
       }
-    },
+    },<% } else if (sass) { %>
+    sass: {
+      dev: {
+        options: {
+          includePaths: [
+          ],
+          sourceMap: true,
+          compress: false
+        },
+        files: {
+          './dist/app/styles/main.css': './src/app/styles/main.scss'
+        }
+      },
+      build: {
+        options: {
+          includePaths: [
+          ],
+          sourceMap: false,
+          compress: true
+        },
+        files: {
+          './built/app/styles/main.css': './dist/app/styles/main.css'
+        }
+      }
+    },<% } %>
     copy: {
       dev: {
-        cwd: '<%= project.src %>/',  // set working folder / root to copy
+        cwd: 'src/',  // set working folder / root to copy
         src: [
           'dojoConfig.js', 'index.html', 'app/dmodel/**/*',
           'robots.txt', 'crossdomain.xml',
@@ -119,74 +141,50 @@ module.exports = function (grunt) {
           'app/templates/*.html', 'app/components/**/templates/*.html',
           'app/**/**/nls/*.js'
         ],
-        dest: '<%= project.dist %>/',    // destination folder
+        dest: 'dist/',    // destination folder
         expand: true           // required when using cwd
       },
       build: {
-        cwd: '<%= project.dist %>/',  // set working folder / root to copy
+        cwd: 'dist/',  // set working folder / root to copy
         src: [
           'index.html', 'robots.txt', 'crossdomain.xml',
         ],
-        dest: '<%= project.built %>/',    // destination folder
+        dest: 'built/',    // destination folder
         expand: true           // required when using cwd
       },
       release: {
-        cwd: '<%= project.built %>/',
+        cwd: 'built/',
         src: [
           'index.html',
           'robots.txt', 'crossdomain.xml',
           'resources/**',
           'app.css',
         ],
-        dest: '<%= project.release %>/',
+        dest: 'release/',
         expand: true
       },
       releasevtiles: {
-        src: '<%= project.built %>/esri/layers/vector-tile.js',
-        dest: '<%= project.release %>/vector-tile.js'
+        src: 'built/esri/layers/vector-tile.js',
+        dest: 'release/vector-tile.js'
       },
       releaseapp: {
-        src: '<%= project.built %>/dojo/dojo.js',
-        dest: '<%= project.release %>/app.js'
+        src: 'built/dojo/dojo.js',
+        dest: 'release/app.js'
       },
       releaseconfig: {
-        src: '<%= project.dist %>/app/config.js',
-        dest: '<%= project.release %>/config.js'
+        src: 'dist/app/config.js',
+        dest: 'release/config.js'
       },
       // need this because it's in dojo code, not css
       releaseblank: {
-        src: '<%= project.built %>/dojo/resources/blank.gif',
-        dest: '<%= project.release %>/resources/blank.gif'
-      }
-    },
-    inject: {
-      single: {
-        scriptSrc: 'scripts/livereload.js',
-        files: {
-          'dist/index.html': 'src/index.html'
-        }
-      },
-      multiple: {
-        scriptSrc: ['./scripts/**.js'],
-        files: [{
-          expand: true,
-          cwd: 'src',
-          src: ['index.html'],
-          dest: 'dist'
-        }]
+        src: 'built/dojo/resources/blank.gif',
+        dest: 'release/resources/blank.gif'
       }
     },
     processhtml: {
       dist: {
         files: {
-          '<%= project.built %>/index.html': '<%= project.dist %>/index.html'
-        }
-      }
-    },
-    staticinline: {
-      main: {
-        files: {
-          '<%= project.built %>/index.html': '<%= project.release %>/index.html',
+          'built/index.html': 'dist/index.html'
         }
       }
     },
@@ -219,8 +217,8 @@ module.exports = function (grunt) {
     watch: {
       styles: {
         files: [
-          '<%= project.src %>/app/styles/*.styl',
-          '<%= project.src %>/app/components/**/css/*.styl'
+          'src/app/styles/*.styl',
+          'src/app/components/**/css/*.styl'
         ],
         tasks: ['stylus:dev'],
         options: {
@@ -229,8 +227,8 @@ module.exports = function (grunt) {
       },
       js: {
         files: [
-          '<%= project.src %>/app/*.js', '<%= project.src %>/app/**/*.js',
-          '<%= project.src %>/app/**/**/*.js',
+          'src/app/*.js', 'src/app/**/*.js',
+          'src/app/**/**/*.js',
           'tests/*.js', 'tests/unit/*.js',
           'tests/support/*.js', 'tests/functional/*.js'
         ],
@@ -241,8 +239,8 @@ module.exports = function (grunt) {
       },
       dev: {
         files: [
-          '<%= project.src %>/dojoConfig.js', '<%= project.src %>/index.html', '<%= project.src %>/app/dmodel/**/*',
-          '<%= project.src %>/app/templates/*.html', '<%= project.src %>/app/components/**/*.html'
+          'src/dojoConfig.js', 'src/index.html', 'src/app/dmodel/**/*',
+          'src/app/templates/*.html', 'src/app/components/**/*.html'
         ],
         tasks: ['copy:dev'],
         options: {
@@ -298,7 +296,7 @@ module.exports = function (grunt) {
     'chromedriver:stop'
   ]);
 
-  grunt.registerTask('dev', ['inject:single', 'http-server', 'watch']);
+  grunt.registerTask('dev', ['http-server', 'watch']);
   grunt.registerTask('release', [
     'default', 'clean:release', 'clean:built', 'copy:build',
     'dojo', 'processhtml', 'cssurlcopy',
@@ -307,5 +305,5 @@ module.exports = function (grunt) {
     'cacheBust']);
   grunt.registerTask('build', ['default', 'clean:built', 'copy:build', 'dojo', 'processhtml']);
   grunt.registerTask('initialize', ['default']);
-  grunt.registerTask('default', ['clean:dist', 'eslint', 'babel:dev', 'stylus:dev', 'copy:dev', 'inject:single']);
+  grunt.registerTask('default', ['clean:dist', 'eslint', 'babel:dev', <% if (stylus) { %>'stylus:dev'<% } else if (sass) { %>'sass:dev'<% } %>, 'copy:dev']);
 };
