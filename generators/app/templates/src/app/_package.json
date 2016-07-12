@@ -5,5 +5,4 @@
   "description": "<%=description%>",
   "homepage": "",
   "dojoBuild": "app.profile.js"
-
 }
