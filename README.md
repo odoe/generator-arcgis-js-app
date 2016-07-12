@@ -47,30 +47,26 @@ yo arcgis-js-app application-name
 You will be asked:
 * Application name if not provided
 * Description of application
-* ArcGIS API Version
+* ArcGIS API Version (3.x or 4.x)
+* Use Stylus or Sass
 * Email to be used in package information
-
-For components
-
-```bash
-yo arcgis-js-app:components ComponentName
-```
 
 Will create component and tests. Updates `intern.js` with test suite.
 
 
 ### What is used?
+* New use 3.x or 4.x of the [ArcGIS API for JavaScript](https://developers.arcgis.com/javascript/)
 * Output application uses [GruntJS](http://gruntjs.com/) for running tasks
 * All code is written in [ES6/ES2015](https://github.com/lukehoban/es6features) and transpiled with [babel](https://babeljs.io/)
 * Uses [eslint](https://github.com/eslint/eslint) to lint code
-* Uses [stylus](https://learnboost.github.io/stylus/) as a css preprocessor
+* Uses [stylus](https://learnboost.github.io/stylus/) or [sass](http://sass-lang.com/) as a css preprocessor
 * Uses [livereload](http://livereload.com/) for easier development workflow
 
 ### Usage
 
 `grunt` - default task, will output code to a `dist` folder with sourcemaps.
 
-`grunt dev` - will start a local server and watch for changes. Uses livereload to refresh browser with each update.
+`grunt dev` - will start a local server on at `http://localhost:8282/` and watch for changes. Uses livereload to refresh browser with each update.
 
 `http://localhost:8282/dist/` - application
 
