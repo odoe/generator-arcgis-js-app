@@ -30,11 +30,11 @@ var profile = {
   // Uses Closure Compiler as the JavaScript minifier. This can also be set to "shrinksafe" to use ShrinkSafe,
   // though ShrinkSafe is deprecated and not recommended.
   // This option defaults to "" (no compression) if not provided.
-  optimize: 'closure',
+  optimize: 'uglify',
 
   // We're building layers, so we need to set the minifier to use for those, too.
   // This defaults to "shrinksafe" if not provided.
-  layerOptimize: 'closure',
+  layerOptimize: 'uglify',
 
   // A list of packages that will be built. The same packages defined in the loader should be defined here in the
   // build profile.
@@ -46,8 +46,6 @@ var profile = {
     'dojox',
     'dstore',
     'dgrid',
-    'xstyle',
-    'put-selector',
     'esri', {
       name: 'moment',
       location: 'moment',
@@ -55,13 +53,18 @@ var profile = {
       trees: [
           // don't bother with .hidden, tests, min, src, and templates
           [".", ".", /(\/\.)|(~$)|(test|txt|src|min|templates)/]
-      ]
+      ],
+      resourceTags: {
+        amd: function (filename, mid) {
+          return /\.js$/.test(filename);
+        }
+      }
     }
   ],
 
   // Build source map files to aid in debugging.
   // This defaults to true.
-  // useSourceMaps: false,
+  useSourceMaps: false,
 
   // Strips all calls to console functions within the code. You can also set this to "warn" to strip everything
   // but console.error, and any other truthy value to strip everything but console.warn and console.error.
@@ -89,39 +92,30 @@ var profile = {
       include: [
         // include the app
         'app/main',
-        // dpendencies of esri/map that will be requested if not included
+        // dpendencies that will be requested if not included
         // probably in a nested require block or something the build script can't resolve
         'dojox/gfx/path',
         'dojox/gfx/svg',
         'dojox/gfx/shape',
-        'dojox/gfx/filters',
-        'dojox/gfx/svgext',
-        'dojox/xml/parser',
-        'esri/dijit/Attribution',
-
-        // be sure to include the layer types used in your web map
-        // otherwise they will be requested asyncronously
-        'esri/map',
-        // 'esri/dijit/Search',
+        // dgrid
+        'dgrid/util/touch',
+        // moment,
+        'moment/moment',
+        // esri stuff
         'esri/layers/FeatureLayer',
-        'esri/InfoTemplate',
-        'esri/SpatialReference',
-        'esri/geometry/Extent',
-        'esri/layers/ArcGISDynamicMapServiceLayer',
-        'esri/layers/DataSource',
-        'esri/layers/DynamicLayerInfo',
-        'esri/layers/LayerDrawingOptions',
-        'esri/layers/ArcGISImageServiceLayer',
-        'esri/layers/ArcGISImageServiceVectorLayer',
-        'esri/layers/ImageServiceParameters',
-        'esri/layers/CSVLayer',
-        'esri/layers/GeoRSSLayer',
-        'esri/layers/KMLLayer',
-        'esri/layers/StreamLayer',
-        'esri/layers/WebTiledLayer',
-        'esri/layers/WMSLayer',
-        'esri/layers/VectorTileLayer',
-        'esri/virtualearth/VETiledLayer'
+        'esri/layers/support/LabelClass',
+        'esri/layers/graphics/controllers/SnapshotController',
+        'esri/layers/graphics/sources/FeatureLayerSource',
+        'esri/views/layers/GraphicsLayerView',
+        'esri/views/layers/GroupLayerView',
+        'esri/views/2d/layers/TiledLayerView2D',
+        'esri/views/2d/layers/GraphicsLayerView2D',
+        'esri/views/2d/layers/DynamicLayerView2D',
+        'esri/views/2d/layers/VectorTileLayerView2D',
+        'esri/portal/creators/VectorTileLayerCreator',
+        'esri/portal/creators/layersCreator',
+        'esri/portal/creators/TiledServiceLayerCreator',
+        'esri/portal/creators/TiledElevationServiceLayerCreator'
       ],
       exclude: [
         'app/config'
@@ -144,27 +138,53 @@ var profile = {
   // <http://dojotoolkit.org/reference-guide/dojo/has.html>.
   staticHasFeatures: {
     // The trace & log APIs are used for debugging the loader, so we do not need them in the build.
-    'dojo-trace-api': false,
-    'dojo-log-api': false,
+    'dojo-trace-api': 0,
+    'dojo-log-api': 0,
 
     // This causes normally private loader data to be exposed for debugging. In a release build, we do not need
     // that either.
-    'dojo-publish-privates': false,
-
+    'dojo-publish-privates': 0,
     // This application is pure AMD, so get rid of the legacy loader.
-    'dojo-sync-loader': false,
-
+    'dojo-sync-loader': 0,
     // `dojo-xhr-factory` relies on `dojo-sync-loader`, which we have removed.
-    'dojo-xhr-factory': false,
-
+    'dojo-xhr-factory': 0,
     // We are not loading tests in production, so we can get rid of some test sniffing code.
-    'dojo-test-sniff': false
+    'dojo-test-sniff': 0,
+    'extend-esri': 0,
+    "config-deferredInstrumentation": 0,
+    "config-dojo-loader-catches": 0,
+    "config-tlmSiblingOfDojo": 0,
+    "dojo-amd-factory-scan": 0,
+    "dojo-combo-api": 0,
+    "dojo-config-api": 1,
+    "dojo-config-require": 0,
+    "dojo-debug-messages": 0,
+    "dojo-dom-ready-api": 1,
+    "dojo-firebug": 0,
+    "dojo-guarantee-console": 1,
+    "dojo-has-api": 1,
+    "dojo-inject-api": 1,
+    "dojo-loader": 1,
+    "dojo-modulePaths": 0,
+    "dojo-moduleUrl": 0,
+    "dojo-requirejs-api": 0,
+    "dojo-sniff": 1,
+    "dojo-timeout-api": 0,
+    "dojo-undef-api": 0,
+    "dojo-v1x-i18n-Api": 1,
+    "dom": 1,
+    "host-browser": 1,
+    "extend-dojo": 1
   },
 
   defaultConfig: {
     parseOnLoad: true,
-    async: true,
     deps: ['app/main'],
+    hasCache: {
+      'extend-esri': 0,
+      'dojo-has-api': 1,
+      'dojo-undef-api': 0
+    },
     paths: {
       'app/config': './config',
       'esri/layers/vector-tile': './vector-tile'
