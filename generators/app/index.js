@@ -38,13 +38,6 @@ module.exports = yeomanBase.extend({
       message: 'Email of author',
       default: ''
     }];
-    /*
-    this.prompt(prompts, function (props) {
-      this.props = props;
-      // To access props later use this.props.someOption;
-      done();
-    }.bind(this));
-    */
     return this.prompt(prompts)
       .then(function(answers) {
         this.props = answers;
@@ -53,6 +46,8 @@ module.exports = yeomanBase.extend({
         this.v3 = answers.esrijsversion === '3.x';
         this.v4 = answers.esrijsversion === '4.x';
         this.normalizedAppname = _.dasherize(answers.appname.toLowerCase()),
+        this.description = answers.description;
+        this.email = answers.email;
         this.log('app name', answers.appname);
         this.log('description', answers.description);
         this.log('arcgis js api version', answers.esrijsversion);
@@ -66,6 +61,8 @@ module.exports = yeomanBase.extend({
         appname: this.props.appname,
         v3: this.v3,
         v4: this.v4,
+        stylus: this.stylus,
+        sass: this.sass,
         // NPM names can no longer contain capital letters
         normalizedAppname: _.dasherize(this.props.appname.toLowerCase()),
         description: this.props.description,

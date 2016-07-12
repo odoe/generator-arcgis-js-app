@@ -144,21 +144,43 @@ var profile = {
   // <http://dojotoolkit.org/reference-guide/dojo/has.html>.
   staticHasFeatures: {
     // The trace & log APIs are used for debugging the loader, so we do not need them in the build.
-    'dojo-trace-api': false,
-    'dojo-log-api': false,
+    'dojo-trace-api': 0,
+    'dojo-log-api': 0,
 
     // This causes normally private loader data to be exposed for debugging. In a release build, we do not need
     // that either.
-    'dojo-publish-privates': false,
-
+    'dojo-publish-privates': 0,
     // This application is pure AMD, so get rid of the legacy loader.
-    'dojo-sync-loader': false,
-
+    'dojo-sync-loader': 0,
     // `dojo-xhr-factory` relies on `dojo-sync-loader`, which we have removed.
-    'dojo-xhr-factory': false,
-
+    'dojo-xhr-factory': 0,
     // We are not loading tests in production, so we can get rid of some test sniffing code.
-    'dojo-test-sniff': false
+    'dojo-test-sniff': 0,
+    'extend-esri': 0,
+    "config-deferredInstrumentation": 0,
+    "config-dojo-loader-catches": 0,
+    "config-tlmSiblingOfDojo": 0,
+    "dojo-amd-factory-scan": 0,
+    "dojo-combo-api": 0,
+    "dojo-config-api": 1,
+    "dojo-config-require": 0,
+    "dojo-debug-messages": 0,
+    "dojo-dom-ready-api": 1,
+    "dojo-firebug": 0,
+    "dojo-guarantee-console": 1,
+    "dojo-has-api": 1,
+    "dojo-inject-api": 1,
+    "dojo-loader": 1,
+    "dojo-modulePaths": 0,
+    "dojo-moduleUrl": 0,
+    "dojo-requirejs-api": 0,
+    "dojo-sniff": 1,
+    "dojo-timeout-api": 0,
+    "dojo-undef-api": 0,
+    "dojo-v1x-i18n-Api": 1,
+    "dom": 1,
+    "host-browser": 1,
+    "extend-dojo": 1
   },
 
   defaultConfig: {
