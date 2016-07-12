@@ -91,8 +91,6 @@ describe('arcgis-js-app:app', function () {
   it('creates stylus files', function () {
     assert.file([
       'src/app/styles/main.styl',
-      'src/app/components/legend/css/Legend.styl',
-      'src/app/components/map/css/Map.styl'
     ]);
   });
   it('creates test files', function () {

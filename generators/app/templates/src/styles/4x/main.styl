@@ -1,0 +1,39 @@
+@import '../../esri/css/main.css'
+@import '../../dgrid/css/dgrid.css'
+$background = white
+html,
+body
+  height: 100%
+  width: 100%
+  margin: 0
+  padding: 0
+  .view-div
+    height: 100%
+// Custom widget
+.item-container
+  background: $background
+  width: 250px
+// dgrid
+.dgrid
+  height: 20em
+  border: 0
+.dgrid-cell
+  cursor: pointer
+.dgrid-cell[role="columnheader"]
+  font-weight: bold
+// I had to force this, not sure why
+.dgrid-scroller
+  margin-top: 31px !important
+.dgrid-header
+  z-index: 99
+  background: invert($background)
+  table
+    color: $background
+.dgrid
+  table tr td
+    background: $background
+.dgrid-selected
+  table.dgrid-row-table
+    color: $background
+  table tr td
+    background: lighten(invert($background), 25%)

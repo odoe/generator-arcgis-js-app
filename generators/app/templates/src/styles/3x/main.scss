@@ -1,0 +1,28 @@
+@import "../../dijit/themes/claro/claro.css";
+@import "../../esri/css/esri.css";
+
+html,
+body {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+    #app-container {
+	    height: 100%;
+    }
+}
+
+.map-node {
+	width: 100%;
+	height: 100%;
+}
+
+.lgnd-node {
+	position: absolute;
+	top: 1em;
+	right: 1em;
+	z-index: 999;
+	background: #fff;
+	padding: 1em;
+	font-family: sans-serif;
+}

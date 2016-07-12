@@ -95,48 +95,28 @@ module.exports = yeomanBase.extend({
         data
       );
 
-      // copy
-      this.copy('profiles/build.profile.js');
       // == app
       this.copy('src/dojoConfig.js');
       this.copy('src/app/app.profile.js');
-      this.copy('src/app/config.js');
-      this.copy('src/app/main.js')
-      this.copy('src/app/router.js')
-      // == gitkeep files
-      this.copy('src/app/components/.gitkeep')
-      this.copy('src/app/helpers/.gitkeep');
-      this.copy('src/app/models/.gitkeep');
-      this.copy('src/app/styles/.gitkeep');
-      this.copy('src/app/templates/.gitkeep');
-      this.copy('tests/functional/.gitkeep');
-      this.copy('tests/support/.gitkeep');
-      this.copy('tests/unit/.gitkeep');
-      // == app files
-      this.copy('src/app/components/legend/css/Legend.styl');
-      this.copy('src/app/components/legend/templates/Legend.html');
-      this.copy('src/app/components/legend/Legend.js');
-
-      this.copy('src/app/components/map/css/Map.styl');
-      this.copy('src/app/components/map/MapView.js');
-      this.copy('src/app/components/map/WebMapView.js');
-
-      this.copy('src/app/helpers/mapgenerator.js');
-      this.copy('src/app/helpers/supportsLocalStorage.js');
-      this.copy('src/app/helpers/zoom.js');
-
-      this.copy('src/app/styles/main.styl');
-
-      this.copy('src/app/templates/Application.html');
-      this.copy('src/app/templates/Application.js');
-
-      // == tests
-      this.copy('tests/unit/components-legend-view.js');
-      this.copy('tests/unit/components-map-mapview.js');
-      this.copy('tests/unit/components-map-webmapview.js');
-      this.copy('tests/unit/helpers-mapgenerator.js');
-      this.copy('tests/unit/helpers-zoom.js');
-      this.copy('tests/intern.js');
+      if (this.v3) {
+        this.directory('src/app/3x', 'src/app');
+        this.directory('tests/3x', 'tests');
+        this.directory('profiles/3x', 'profiles');
+        if (this.sass) {
+          this.template('src/styles/3x/main.scss', 'src/app/styles/main.scss');
+        } else if (this.stylus) {
+          this.template('src/styles/3x/main.styl', 'src/app/styles/main.styl');
+        }
+      } else if (this.v4) {
+        this.directory('src/app/4x', 'src/app');
+        this.directory('tests/4x', 'tests');
+        this.directory('profiles/4x', 'profiles');
+        if (this.sass) {
+          this.template('src/styles/4x/main.scss', 'src/app/styles/main.scss');
+        } else if (this.stylus) {
+          this.template('src/styles/4x/main.styl', 'src/app/styles/main.styl');
+        }
+      }
 
       // == robots and crossdomain
       this.copy('src/robots.txt');

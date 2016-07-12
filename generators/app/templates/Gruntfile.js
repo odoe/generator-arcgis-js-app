@@ -179,8 +179,50 @@ module.exports = function (grunt) {
       releaseblank: {
         src: 'built/dojo/resources/blank.gif',
         dest: 'release/resources/blank.gif'
+      },
+    <% if (v4) { %>
+      // need these images for basemaptoggle
+      releasetopo: {
+        src: 'built/esri/images/basemap/topo.jpg',
+        dest: 'release/resources/esri/images/basemap/topo.jpg'
+      },
+      releasehybrid: {
+        src: 'built/esri/images/basemap/hybrid.jpg',
+        dest: 'release/resources/esri/images/basemap/hybrid.jpg'
+      },
+    <% } %>
+      moment: {
+        cwd: 'built/',
+        src: [
+          'moment/*.js',
+          'moment/locale/*.js',
+          '!moment/*.uncompressed.js',
+          '!moment/locale/*.uncompressed.js'
+        ],
+        dest: 'release/',
+        expand: true
       }
     },
+    <% if (v4) { %>
+    // This is getting hardcore to change where images come from
+    // for basemap toggle
+    'string-replace': {
+      dist: {
+        files: {
+          'release/app.js': 'built/dojo/dojo.js'
+        },
+        options: {
+          replacements: [{
+            pattern: '../images/basemap/hybrid.jpg',
+            replacement: 'resources/esri/images/basemap/hybrid.jpg'
+          }, {
+            pattern: '../images/basemap/topo.jpg',
+            replacement: 'resources/esri/images/basemap/topo.jpg'
+          }]
+        }
+      }
+    },
+    <% } %>
     processhtml: {
       dist: {
         files: {
@@ -203,18 +245,18 @@ module.exports = function (grunt) {
     },
     cacheBust: {
       options: {
-        encoding: 'utf8',
-        algorithm: 'md5',
-        length: 16,
-        deleteOriginals: true
+        baseDir: 'release',
+        deleteOriginals: true,
+        assets: 'app.{js,css}'
       },
-      assets: {
+      release: {
         files: [{
           src: ['release/index.html']
         }]
       }
     },
     watch: {
+      <% if (stylus) { %>
       styles: {
         files: [
           'src/app/styles/*.styl',
@@ -225,6 +267,17 @@ module.exports = function (grunt) {
           livereload: true,
         }
       },
+      <% } else if (sass) { %>
+      styles: {
+        files: [
+          'src/app/styles/*.scss'
+        ],
+        tasks: ['sass:dev'],
+        options: {
+          livereload: true,
+        }
+      },
+      <% } %>
       js: {
         files: [
           'src/app/*.js', 'src/app/**/*.js',
@@ -248,31 +301,11 @@ module.exports = function (grunt) {
         }
       }
     },
-    dojo: {
-      dist: {
-        options: {
-          profile: 'profiles/build.profile.js', // Profile for build
-        }
-      },
-      options: {
-        cssOptimize: false,
-        dojo: 'dist/dojo/dojo.js', // Path to dojo.js file in dojo source
-        load: 'build', // Optional: Utility to bootstrap (Default: 'build')
-        // profiles: [], // Optional: Array of Profiles for build
-        // appConfigFile: '', // Optional: Config file for dojox/app
-        // package: '', // Optional: Location to search package.json (Default: nothing)
-        // packages: [], // Optional: Array of locations of package.json (Default: nothing)
-        // require: '', // Optional: Module to require for the build (Default: nothing)
-        // requires: [], // Optional: Array of modules to require for the build (Default: nothing)
-        releaseDir: '../built', // Optional: release dir rel to basePath (Default: 'release')
-        cwd: './' // Directory to execute build within
-        // dojoConfig: '', // Optional: Location of dojoConfig (Default: null),
-        // Optional: Base Path to pass at the command line
-        // Takes precedence over other basePaths
-        // Default: null
-        // basePath: './dist'
+    shell: {
+      dojo: {
+        command: 'node dist/dojo/dojo.js load=build --profile profiles/build.profile.js --cwd "./" --releaseDir ../built'
       }
-    },
+    }
   });
 
   grunt.registerTask('chromedriver', 'start/stop chromedriver', function() {
@@ -299,11 +332,15 @@ module.exports = function (grunt) {
   grunt.registerTask('dev', ['http-server', 'watch']);
   grunt.registerTask('release', [
     'default', 'clean:release', 'clean:built', 'copy:build',
-    'dojo', 'processhtml', 'cssurlcopy',
+    'shell:dojo', 'processhtml', 'cssurlcopy',
     'copy:release', 'copy:releaseapp', 'copy:releasevtiles',
     'copy:releaseblank', 'copy:releaseconfig',
-    'cacheBust']);
-  grunt.registerTask('build', ['default', 'clean:built', 'copy:build', 'dojo', 'processhtml']);
+    <% if (v4) { %>
+    'copy:releasetopo', 'copy:releasehybrid',
+    'string-replace',
+    <% } %>
+    'cacheBust', 'copy:moment']);
+  grunt.registerTask('build', ['default', 'clean:built', 'copy:build', 'shell:dojo', 'processhtml']);
   grunt.registerTask('initialize', ['default']);
   grunt.registerTask('default', ['clean:dist', 'eslint', 'babel:dev', <% if (stylus) { %>'stylus:dev'<% } else if (sass) { %>'sass:dev'<% } %>, 'copy:dev']);
 };
