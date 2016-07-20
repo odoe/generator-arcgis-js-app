@@ -187,7 +187,7 @@ var profile = {
     },
     paths: {
       'app/config': './config',
-      'esri/layers/vector-tile': './vector-tile',
+      'esri/views/2d/layers/vector-tile': './vector-tile',
       'moment': './moment'
     }
   }

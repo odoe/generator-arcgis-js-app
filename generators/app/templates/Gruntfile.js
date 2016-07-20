@@ -163,10 +163,17 @@ module.exports = function (grunt) {
         dest: 'release/',
         expand: true
       },
+    <% if (v4) { %>
+      releasevtiles: {
+        src: 'built/esri/views/2d/layers/vector-tile.js',
+        dest: 'release/vector-tile.js'
+      },
+    <% else if (v3) { %>
       releasevtiles: {
         src: 'built/esri/layers/vector-tile.js',
         dest: 'release/vector-tile.js'
       },
+    <% } %>
       releaseapp: {
         src: 'built/dojo/dojo.js',
         dest: 'release/app.js'
