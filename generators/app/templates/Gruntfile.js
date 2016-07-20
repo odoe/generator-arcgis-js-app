@@ -168,7 +168,7 @@ module.exports = function (grunt) {
         src: 'built/esri/views/2d/layers/vector-tile.js',
         dest: 'release/vector-tile.js'
       },
-    <% else if (v3) { %>
+    <% } else if (v3) { %>
       releasevtiles: {
         src: 'built/esri/layers/vector-tile.js',
         dest: 'release/vector-tile.js'
