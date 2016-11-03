@@ -20,7 +20,10 @@ Not every new computer comes with a Yeoman pre-installed. He lives in the [npm](
 
 ```bash
 npm install -g yo
+npm install -g bower
 ```
+
+Bower is a required dependency of using the packages in the generated app.
 
 ### Yeoman Generators
 
