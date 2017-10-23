@@ -79,6 +79,10 @@ Will create component and tests. Updates `intern.js` with test suite.
 
 `grunt e2e` - runs all tests using local [chromedriver](https://sites.google.com/a/chromium.org/chromedriver/).
 
+### Source code explanation
+Please check [this video](https://www.youtube.com/watch?v=6W3ow22pank):
+
+[![youtube screenshot](https://user-images.githubusercontent.com/826965/31885318-6cf792d6-b7f0-11e7-8b2c-31469966c7d3.png)](https://www.youtube.com/watch?v=6W3ow22pank)
 
 ### Still a beta
 * Considering implementing a [widgetloader](https://github.com/odoe/esri-widgetloader)
